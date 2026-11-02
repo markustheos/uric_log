@@ -3,6 +3,7 @@ import Foundation
 enum AppLanguage: String, CaseIterable, Identifiable {
 	case simplifiedChinese = "zh-Hans"
 	case english = "en"
+	case italian = "it"
 
 	var id: String { rawValue }
 
@@ -12,6 +13,8 @@ enum AppLanguage: String, CaseIterable, Identifiable {
 			return "简体中文"
 		case .english:
 			return "English"
+		case .italian:
+			return "Italiano"
 		}
 	}
 
