@@ -64,6 +64,8 @@
 		A1B2C3D4E5F6010203041403 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A1B2C3D4E5F6010203041404 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		A1B2C3D4E5F6010203041501 /* MeasurementReminderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementReminderManager.swift; sourceTree = "<group>"; };
+		C2ACF3DA30987F9D003CE5DC /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C2ACF3DB30987F9D003CE5DC /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +226,7 @@
 				en,
 				"zh-Hans",
 				Base,
+				it,
 			);
 			mainGroup = A1B2C3D4E5F6010203040540;
 			packageReferences = (
@@ -333,6 +336,7 @@
 			children = (
 				A1B2C3D4E5F6010203040E03 /* en */,
 				A1B2C3D4E5F6010203040E04 /* zh-Hans */,
+				C2ACF3DA30987F9D003CE5DC /* it */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -342,6 +346,7 @@
 			children = (
 				A1B2C3D4E5F6010203041403 /* en */,
 				A1B2C3D4E5F6010203041404 /* zh-Hans */,
+				C2ACF3DB30987F9D003CE5DC /* it */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

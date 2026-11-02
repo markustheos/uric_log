@@ -19,7 +19,7 @@
         a { color: var(--accent); }
         .summary { padding: 16px 18px; background: var(--bg); border-left: 3px solid var(--accent); }
         .subtitle, footer { color: var(--muted); }
-        .language { display: flex; gap: 8px; margin-top: 18px; }
+        .language { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
         .language button { padding: 7px 12px; border: 1px solid var(--line); border-radius: 6px; color: var(--text); background: var(--surface); font: inherit; cursor: pointer; }
         .language button[aria-pressed="true"] { color: white; background: var(--accent); border-color: var(--accent); }
         footer { border-top: 1px solid var(--line); margin-top: 36px; padding-top: 20px; font-size: 14px; }
@@ -32,9 +32,10 @@
         <div class="language" aria-label="Language">
             <button type="button" data-language-button="zh-CN">中文</button>
             <button type="button" data-language-button="en">English</button>
+            <button type="button" data-language-button="it">Italiano</button>
         </div>
 
-        <article data-language="zh-CN">
+        <article data-language="zh-CN" data-title="隐私政策 - 尿酸记录">
             <header>
                 <h1>隐私政策</h1>
                 <p class="subtitle">尿酸记录 App</p>
@@ -101,7 +102,7 @@
             <footer>最后更新日期：2026 年 9 月 10 日<br>© 2026 尿酸记录</footer>
         </article>
 
-        <article data-language="en">
+        <article data-language="en" data-title="Privacy Policy - Uric Acid Log">
             <header>
                 <h1>Privacy Policy</h1>
                 <p class="subtitle">Uric Acid Log</p>
@@ -167,22 +168,106 @@
             <p>For privacy questions, contact <a href="mailto:lq.so@qq.com">lq.so@qq.com</a>.</p>
             <footer>Last updated: September 10, 2026<br>© 2026 Uric Acid Log</footer>
         </article>
+
+        <article data-language="it" data-title="Informativa sulla privacy - Diario Acido Urico">
+            <header>
+                <h1>Informativa sulla privacy</h1>
+                <p class="subtitle">Diario Acido Urico</p>
+            </header>
+            <p class="summary">Diario Acido Urico è progettata per conservare le tue registrazioni sanitarie sul dispositivo. I valori di acido urico, le note e gli altri contenuti sanitari restano sul tuo dispositivo. Vengono sincronizzati tramite Apple CloudKit solo quando attivi la sincronizzazione iCloud.</p>
+
+            <h2>1. Informazioni che trattiamo</h2>
+            <p>Non inviamo valori di acido urico, valori obiettivo, date delle misurazioni, note delle registrazioni, impostazioni relative al sesso o altri contenuti sanitari ai servizi di analisi o pubblicità.</p>
+            <p>Per comprendere l'utilizzo delle funzionalità e migliorare l'app, trattiamo un insieme limitato di dati di analisi tramite PostHog, tra cui:</p>
+            <ul>
+                <li>Avvii dell'app, navigazione tra le schermate, tocchi sui pulsanti, impostazioni delle funzionalità e selezioni dei filtri;</li>
+                <li>Informazioni tecniche di base, come versione dell'app, versione del sistema operativo, tipo di dispositivo, lingua dell'app e fuso orario;</li>
+                <li>Un identificativo casuale generato da PostHog e l'indirizzo IP che potrebbe essere trattato durante la gestione delle richieste di rete.</li>
+            </ul>
+            <p>Non richiediamo nome, indirizzo email o numero di telefono per le analisi sull'utilizzo dell'app e non associamo intenzionalmente gli identificativi di analisi alle tue registrazioni sanitarie.</p>
+
+            <h2>2. Archiviazione locale e iCloud</h2>
+            <ul>
+                <li><strong>Archiviazione locale:</strong> le registrazioni sanitarie vengono salvate nel database dell'app sul tuo dispositivo.</li>
+                <li><strong>Sincronizzazione iCloud:</strong> quando è attiva, le registrazioni vengono archiviate tramite Apple CloudKit nel tuo account iCloud privato e sincronizzate tra i tuoi dispositivi Apple. Non possiamo accedere direttamente ai tuoi dati CloudKit privati.</li>
+                <li><strong>Disattivazione della sincronizzazione:</strong> puoi disattivare la sincronizzazione iCloud nelle impostazioni dell'app in qualsiasi momento.</li>
+            </ul>
+
+            <h2>3. Esportazione CSV</h2>
+            <p>Puoi esportare le registrazioni come file CSV. Il file viene salvato o condiviso solo nella destinazione che scegli e l'app non carica i file esportati sui nostri server.</p>
+
+            <h2>4. Analisi sull'utilizzo dell'app</h2>
+            <p>Utilizziamo PostHog per comprendere l'utilizzo dell'app in forma aggregata, verificare le installazioni e risolvere i problemi. Le analisi sull'utilizzo dell'app non dipendono dalla tua scelta sul consenso pubblicitario.</p>
+            <ul>
+                <li>I dati di analisi possono essere trattati dai servizi PostHog negli Stati Uniti;</li>
+                <li>La riproduzione delle sessioni (Session Replay), la raccolta automatica delle interazioni con gli elementi dell'interfaccia, la raccolta automatica delle schermate, i sondaggi, la raccolta delle sottoscrizioni alle notifiche push e il monitoraggio automatico degli errori sono disattivati;</li>
+                <li><a href="https://posthog.com/privacy" rel="noopener noreferrer">Informativa sulla privacy di PostHog</a>.</li>
+            </ul>
+
+            <h2>5. Pubblicità e consenso</h2>
+            <p>Il servizio pubblicitario viene selezionato in base alla regione dell'App Store associata all'account che ha scaricato l'app. Le richieste pubblicitarie iniziano solo dopo il completamento della procedura di informativa o di scelta sulla privacy applicabile:</p>
+            <ul>
+                <li><strong>App Store della Cina continentale:</strong> viene utilizzato Umeng U-AppWin. L'app mostra un'informativa sulla privacy pubblicitaria prima dell'inizializzazione.</li>
+                <li><strong>Altre regioni dell'App Store:</strong> viene utilizzato Google AdMob. Google User Messaging Platform (UMP) determina se il consenso o le opzioni sulla privacy sono richiesti dalla normativa locale.</li>
+                <li>I servizi pubblicitari possono trattare informazioni sul dispositivo, identificativi pubblicitari, indirizzi IP, informazioni di rete e interazioni con gli annunci. Non ricevono le tue registrazioni di acido urico né le tue note.</li>
+                <li><a href="https://www.umeng.com/page/policy" rel="noopener noreferrer">Informativa sulla privacy di Umeng</a>; <a href="https://policies.google.com/privacy" rel="noopener noreferrer">Informativa sulla privacy di Google</a>.</li>
+            </ul>
+
+            <h2>6. Conservazione e sicurezza</h2>
+            <p>Hai il controllo delle registrazioni salvate sul dispositivo e puoi eliminarle dall'app. Disinstallando l'app vengono rimossi i suoi dati locali. I dati iCloud sono gestiti tramite il tuo account Apple. Le informazioni trattate dai servizi di terze parti vengono conservate secondo le rispettive configurazioni, gli accordi e le informative sulla privacy. Per la trasmissione dei dati vengono utilizzate misure di sicurezza comunemente adottate nel settore, come HTTPS.</p>
+
+            <h2>7. Le tue scelte e i tuoi diritti</h2>
+            <ul>
+                <li>Visualizzare, aggiungere, modificare, eliminare o esportare le tue registrazioni;</li>
+                <li>Attivare o disattivare la sincronizzazione iCloud;</li>
+                <li>Nella Cina continentale, rifiutare il consenso pubblicitario. Le funzionalità di registrazione locale restano disponibili e l'SDK pubblicitario di Umeng non viene inizializzato;</li>
+                <li>Nelle altre regioni, utilizzare le opzioni sulla privacy di Google per gestire il consenso pubblicitario. Google potrebbe mostrare annunci con limitazioni o non personalizzati in base alle tue scelte e alla normativa applicabile;</li>
+                <li>Contattarci per fare domande o esercitare i diritti relativi ai dati di analisi.</li>
+            </ul>
+
+            <h2>8. Privacy dei minori</h2>
+            <p>L'app non offre servizi rivolti ai minori e non raccogliamo consapevolmente registrazioni sanitarie o identificativi diretti di minori. Contattaci se ritieni che un minore ci abbia fornito tali informazioni.</p>
+
+            <h2>9. Aggiornamenti dell'informativa</h2>
+            <p>Potremmo aggiornare questa informativa in seguito a modifiche delle funzionalità, dei fornitori di servizi o dei requisiti normativi. Le modifiche sostanziali saranno comunicate tramite l'app o questa pagina.</p>
+
+            <h2>10. Contatti</h2>
+            <p>Per domande sulla privacy, scrivi a <a href="mailto:lq.so@qq.com">lq.so@qq.com</a>.</p>
+            <footer>Ultimo aggiornamento: 10 settembre 2026<br>© 2026 Diario Acido Urico</footer>
+        </article>
     </main>
 
     <script>
         const articles = [...document.querySelectorAll('[data-language]')];
         const buttons = [...document.querySelectorAll('[data-language-button]')];
+        const availableLanguages = articles.map(article => article.dataset.language);
+        const languageStorageKey = 'uric-acid-log-language';
+
+        function resolveLanguage(language) {
+            const normalized = String(language || '').trim().replace(/_/g, '-').toLowerCase();
+            return availableLanguages.find(value => value.toLowerCase() === normalized)
+                || availableLanguages.find(value => value.toLowerCase() === normalized.split('-')[0])
+                || availableLanguages.find(value => value.toLowerCase().split('-')[0] === normalized.split('-')[0]);
+        }
 
         function showLanguage(language) {
-            const selected = language.toLowerCase().startsWith('zh') ? 'zh-CN' : 'en';
+            const selected = resolveLanguage(language) || resolveLanguage('en') || availableLanguages[0];
+            const selectedArticle = articles.find(article => article.dataset.language === selected);
             document.documentElement.lang = selected;
-            document.title = selected === 'zh-CN' ? '隐私政策 - 尿酸记录' : 'Privacy Policy - Uric Acid Log';
+            document.title = selectedArticle.dataset.title || selectedArticle.querySelector('h1').textContent;
             articles.forEach(article => { article.style.display = article.dataset.language === selected ? 'block' : 'none'; });
             buttons.forEach(button => { button.setAttribute('aria-pressed', String(button.dataset.languageButton === selected)); });
         }
 
-        buttons.forEach(button => button.addEventListener('click', () => showLanguage(button.dataset.languageButton)));
-        showLanguage((navigator.languages && navigator.languages[0]) || navigator.language || 'en');
+        buttons.forEach(button => button.addEventListener('click', () => {
+            showLanguage(button.dataset.languageButton);
+            try { localStorage.setItem(languageStorageKey, button.dataset.languageButton); } catch { /* Storage may be unavailable. */ }
+        }));
+
+        let savedLanguage;
+        try { savedLanguage = localStorage.getItem(languageStorageKey); } catch { /* Use browser preferences when storage is unavailable. */ }
+        const preferredLanguages = [savedLanguage, ...(navigator.languages || []), navigator.language];
+        showLanguage(preferredLanguages.map(resolveLanguage).find(Boolean));
     </script>
 </body>
 </html>

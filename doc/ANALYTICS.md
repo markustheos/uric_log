@@ -1,3 +1,83 @@
+<a id="english"></a>
+
+# Acid Uric Log — PostHog Analytics Guide
+
+[English](#english) | [简体中文](#chinese) | [Italiano](#italian)
+
+## Privacy constraints
+
+- Do not upload uric acid readings, target values, notes, measurement dates, record IDs, or personal information stored on the device.
+- Do not upload error objects or free text directly as event properties.
+- Only the enumerated properties listed in this document are permitted.
+- Keep Session Replay, automatic control interaction tracking, and automatic screen-view tracking disabled.
+
+## Common properties
+
+Every event sent through PostHog includes the following properties:
+
+| Property | Values | Description |
+| --- | --- | --- |
+| `environment` | `debug` / `production` | Xcode Debug builds use `debug`; Release, TestFlight, and App Store builds use `production` |
+
+## Common events
+
+| Event | Trigger | Properties |
+| --- | --- | --- |
+| `app_launched` | App initialization completes | None |
+| `tab_selected` | The user switches between bottom tabs | `tab`: `records` / `trends` / `settings` |
+| `storage_error_acknowledged` | The user dismisses the storage initialization error alert | None |
+
+## Records
+
+| Event | Trigger | Properties |
+| --- | --- | --- |
+| `records_range_changed` | The user changes the records list time range | `range`: `days7` / `days30` / `days90` / `all` |
+| `record_add_tapped` | The user taps the add button | None |
+| `record_opened` | The user taps an existing record | None |
+| `record_editor_cancelled` | The user cancels record creation or editing | `mode`: `create` / `edit` |
+| `record_unit_selected` | The user selects a unit in the editor | `unit`: `umolL` / `mgdL` |
+| `record_save_tapped` | The user taps save | `mode`: `create` / `edit` |
+| `record_saved` | The Core Data save succeeds | `mode`: `create` / `edit` |
+| `record_save_failed` | The Core Data save fails | `mode`: `create` / `edit` |
+| `extreme_value_warning_shown` | The extreme value confirmation dialog appears | `mode`: `create` / `edit` |
+| `extreme_value_save_cancelled` | The user cancels saving an extreme value | `mode`: `create` / `edit` |
+| `extreme_value_save_confirmed` | The user confirms saving an extreme value | `mode`: `create` / `edit` |
+| `record_delete_requested` | The user selects delete from the context menu | None |
+| `record_delete_cancelled` | The user cancels the deletion confirmation | None |
+| `record_delete_confirmed` | The user confirms deletion | None |
+| `record_deleted` | The deletion is saved | None |
+| `reference_info_opened` | The user opens reference information | None |
+| `reference_info_closed` | The user closes reference information | None |
+
+## Trends and settings
+
+| Event | Trigger | Properties |
+| --- | --- | --- |
+| `trends_range_changed` | The user changes the trends time range | `range`: `days7` / `days30` / `days90` / `all` |
+| `preferred_unit_changed` | The user changes the default unit | `unit`: `umolL` / `mgdL` |
+| `gender_setting_changed` | The user changes the sex setting | None; do not upload the selected value |
+| `target_setting_toggled` | The user toggles the target value feature | None; do not upload the enabled state or target value |
+| `icloud_sync_toggled` | The user toggles iCloud sync | None |
+| `icloud_restart_hint_acknowledged` | The user dismisses the restart notice | None |
+
+## Export
+
+| Event | Trigger | Properties |
+| --- | --- | --- |
+| `export_range_changed` | The user changes the CSV export range | `range`: `days7` / `days30` / `days90` / `all` |
+| `csv_export_tapped` | The user taps to generate a CSV file | `range`: as above |
+| `csv_export_succeeded` | The CSV file is generated successfully | None |
+| `csv_export_failed` | CSV file generation fails | None; do not upload error text |
+| `csv_share_tapped` | The system share sheet opens | None |
+
+## Rules for adding events
+
+Send every event through `Analytics.track`. Before adding an event, update this document and verify that its properties contain no health data, free text, times, unique identifiers, or information that could be used to reconstruct a user's records.
+
+---
+
+<a id="chinese"></a>
+
 # PostHog 埋点说明
 
 ## 隐私约束
@@ -69,3 +149,79 @@
 ## 新增事件规范
 
 所有事件通过 `Analytics.track` 发送。新增事件前必须更新本文档，并确认属性不包含健康数据、自由文本、时间、唯一标识符或可用于重建用户记录的信息。
+
+---
+
+<a id="italian"></a>
+
+# Diario Acido Urico — Guida agli eventi PostHog
+
+## Vincoli sulla privacy
+
+- Non inviare valori di acido urico, valori obiettivo, note, date delle misurazioni, ID delle registrazioni o informazioni personali presenti sul dispositivo.
+- Non inviare direttamente oggetti di errore o testo libero come proprietà degli eventi.
+- Sono consentite esclusivamente le proprietà con valori enumerati elencate in questo documento.
+- Mantieni disattivati Session Replay, la raccolta automatica delle interazioni con i controlli e la raccolta automatica delle visualizzazioni delle schermate.
+
+## Proprietà comuni
+
+Tutti gli eventi inviati tramite PostHog includono le seguenti proprietà:
+
+| Proprietà | Valori | Descrizione |
+| --- | --- | --- |
+| `environment` | `debug` / `production` | Le build Debug di Xcode usano `debug`; le build Release, TestFlight e App Store usano `production` |
+
+## Eventi comuni
+
+| Evento | Quando viene generato | Proprietà |
+| --- | --- | --- |
+| `app_launched` | Al termine dell'inizializzazione dell'app | Nessuna |
+| `tab_selected` | Quando l'utente cambia scheda nella barra inferiore | `tab`: `records` / `trends` / `settings` |
+| `storage_error_acknowledged` | Quando l'utente chiude l'avviso di errore di inizializzazione dell'archivio | Nessuna |
+
+## Registrazioni
+
+| Evento | Quando viene generato | Proprietà |
+| --- | --- | --- |
+| `records_range_changed` | Quando l'utente modifica l'intervallo temporale dell'elenco delle registrazioni | `range`: `days7` / `days30` / `days90` / `all` |
+| `record_add_tapped` | Quando l'utente tocca il pulsante di aggiunta | Nessuna |
+| `record_opened` | Quando l'utente tocca una registrazione esistente | Nessuna |
+| `record_editor_cancelled` | Quando l'utente annulla la creazione o la modifica di una registrazione | `mode`: `create` / `edit` |
+| `record_unit_selected` | Quando l'utente seleziona un'unità nell'editor | `unit`: `umolL` / `mgdL` |
+| `record_save_tapped` | Quando l'utente tocca il pulsante di salvataggio | `mode`: `create` / `edit` |
+| `record_saved` | Quando il salvataggio in Core Data riesce | `mode`: `create` / `edit` |
+| `record_save_failed` | Quando il salvataggio in Core Data non riesce | `mode`: `create` / `edit` |
+| `extreme_value_warning_shown` | Quando viene mostrata la finestra di conferma per un valore estremo | `mode`: `create` / `edit` |
+| `extreme_value_save_cancelled` | Quando l'utente annulla il salvataggio di un valore estremo | `mode`: `create` / `edit` |
+| `extreme_value_save_confirmed` | Quando l'utente conferma il salvataggio di un valore estremo | `mode`: `create` / `edit` |
+| `record_delete_requested` | Quando l'utente seleziona l'eliminazione dal menu contestuale | Nessuna |
+| `record_delete_cancelled` | Quando l'utente annulla la conferma di eliminazione | Nessuna |
+| `record_delete_confirmed` | Quando l'utente conferma l'eliminazione | Nessuna |
+| `record_deleted` | Quando viene salvata l'eliminazione | Nessuna |
+| `reference_info_opened` | Quando l'utente apre le informazioni di riferimento | Nessuna |
+| `reference_info_closed` | Quando l'utente chiude le informazioni di riferimento | Nessuna |
+
+## Andamento e impostazioni
+
+| Evento | Quando viene generato | Proprietà |
+| --- | --- | --- |
+| `trends_range_changed` | Quando l'utente modifica l'intervallo temporale dei grafici dell'andamento | `range`: `days7` / `days30` / `days90` / `all` |
+| `preferred_unit_changed` | Quando l'utente modifica l'unità predefinita | `unit`: `umolL` / `mgdL` |
+| `gender_setting_changed` | Quando l'utente modifica l'impostazione del sesso | Nessuna; non inviare il valore selezionato |
+| `target_setting_toggled` | Quando l'utente attiva o disattiva la funzione del valore obiettivo | Nessuna; non inviare lo stato di attivazione né il valore obiettivo |
+| `icloud_sync_toggled` | Quando l'utente attiva o disattiva la sincronizzazione iCloud | Nessuna |
+| `icloud_restart_hint_acknowledged` | Quando l'utente chiude l'avviso di riavvio | Nessuna |
+
+## Esportazione
+
+| Evento | Quando viene generato | Proprietà |
+| --- | --- | --- |
+| `export_range_changed` | Quando l'utente modifica l'intervallo di esportazione CSV | `range`: `days7` / `days30` / `days90` / `all` |
+| `csv_export_tapped` | Quando l'utente richiede la generazione di un file CSV | `range`: come sopra |
+| `csv_export_succeeded` | Quando il file CSV viene generato correttamente | Nessuna |
+| `csv_export_failed` | Quando la generazione del file CSV non riesce | Nessuna; non inviare il testo dell'errore |
+| `csv_share_tapped` | Quando si apre il pannello di condivisione del sistema | Nessuna |
+
+## Regole per aggiungere eventi
+
+Invia tutti gli eventi tramite `Analytics.track`. Prima di aggiungere un evento, aggiorna questo documento e verifica che le proprietà non contengano dati sanitari, testo libero, indicazioni temporali, identificatori univoci o informazioni che consentano di ricostruire le registrazioni dell'utente.
