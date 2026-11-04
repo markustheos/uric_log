@@ -15,8 +15,8 @@ enum MeasurementReminderManager {
 	static func schedule(weekdays: Set<Int>, hour: Int, minute: Int) async {
 		await cancel()
 		let content = UNMutableNotificationContent()
-		content.title = L10n.string("该测尿酸了")
-		content.body = L10n.string("记录一次测量，持续关注尿酸变化。")
+		content.title = L10n.string("MEASUREMENT_REMINDER_TITLE")
+		content.body = L10n.string("MEASUREMENT_REMINDER_BODY")
 		content.sound = .default
 
 		for weekday in weekdays {

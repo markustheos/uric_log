@@ -104,9 +104,9 @@ enum AdProviderPreference: String, CaseIterable, Identifiable {
 
 	var displayName: String {
 		switch self {
-		case .automatic: return L10n.string("默认（按 App Store 地区）")
+		case .automatic: return L10n.string("AD_PROVIDER_AUTOMATIC")
 		case .admob: return "AdMob"
-		case .umeng: return L10n.string("友盟")
+		case .umeng: return L10n.string("AD_PROVIDER_UMENG")
 		}
 	}
 }
@@ -120,9 +120,9 @@ enum UserGender: String, CaseIterable, Identifiable, Codable {
 	var displayName: String {
 		switch self {
 		case .male:
-			return L10n.string("男性")
+			return L10n.string("SEX_MALE")
 		case .female:
-			return L10n.string("女性")
+			return L10n.string("SEX_FEMALE")
 		}
 	}
 	
@@ -166,13 +166,13 @@ enum TimeRange: String, CaseIterable, Identifiable {
 	var displayName: String {
 		switch self {
 		case .days7:
-			return L10n.string("7天")
+			return L10n.string("RANGE_7_DAYS")
 		case .days30:
-			return L10n.string("30天")
+			return L10n.string("RANGE_30_DAYS")
 		case .days90:
-			return L10n.string("90天")
+			return L10n.string("RANGE_90_DAYS")
 		case .all:
-			return L10n.string("全部")
+			return L10n.string("RANGE_ALL")
 		}
 	}
 

@@ -30,7 +30,7 @@ struct TrendsView: View {
 			.padding()
 		}
 		.background(Color(.systemGroupedBackground))
-			.navigationTitle("趋势")
+			.navigationTitle("TAB_TRENDS")
 			.onChange(of: timeRange) { _, newValue in
 				Analytics.track("trends_range_changed", properties: ["range": newValue.rawValue])
 			}
@@ -42,12 +42,12 @@ struct TrendsView: View {
 			HStack {
 				Image(systemName: "calendar")
 					.foregroundStyle(.blue)
-				Text("时间范围")
+				Text("TIME_RANGE")
 					.font(.system(size: 17, weight: .semibold))
 				Spacer()
 			}
 			
-			Picker("范围", selection: timeRangeSelection) {
+			Picker("RANGE", selection: timeRangeSelection) {
 				ForEach(TimeRange.allCases) { range in
 					Text(range.displayName).tag(range)
 				}
@@ -69,7 +69,7 @@ struct TrendsView: View {
 			HStack {
 				Image(systemName: "chart.line.uptrend.xyaxis")
 					.foregroundStyle(.green)
-				Text("尿酸趋势")
+				Text("URIC_ACID_TREND")
 					.font(.system(size: 17, weight: .semibold))
 				Spacer()
 				
@@ -78,7 +78,7 @@ struct TrendsView: View {
 				}
 				
 				if !filteredPoints.isEmpty {
-					Text(L10n.format("%d 条记录", filteredPoints.count))
+					Text(L10n.format("RECORD_COUNT", filteredPoints.count))
 						.font(.caption)
 						.foregroundStyle(.secondary)
 						.padding(.horizontal, 8)
@@ -108,7 +108,7 @@ struct TrendsView: View {
 		HStack(spacing: 4) {
 			Image(systemName: "target")
 				.font(.caption2)
-			Text(L10n.format("目标 %@", formatValue(targetValue)))
+			Text(L10n.format("TARGET_VALUE_LABEL", formatValue(targetValue)))
 				.font(.caption)
 				.lineLimit(1)
 				.minimumScaleFactor(0.6)
@@ -129,10 +129,10 @@ struct TrendsView: View {
 			Image(systemName: "chart.xyaxis.line")
 				.font(.system(size: 48))
 				.foregroundStyle(.secondary.opacity(0.5))
-			Text("暂无数据")
+			Text("TRENDS_EMPTY_TITLE")
 				.font(.system(size: 16))
 				.foregroundStyle(.secondary)
-			Text("添加记录后即可查看趋势图")
+			Text("TRENDS_EMPTY_MESSAGE")
 				.font(.caption)
 				.foregroundStyle(.secondary.opacity(0.7))
 		}
@@ -148,15 +148,15 @@ struct TrendsView: View {
 			Text(preferredUnit.displayName)
 				.font(.caption2.weight(.medium))
 				.foregroundStyle(.secondary)
-				.accessibilityLabel(L10n.format("纵轴单位：%@", preferredUnit.displayName))
+				.accessibilityLabel(L10n.format("CHART_Y_AXIS_UNIT", preferredUnit.displayName))
 
 			Chart {
 			// 单条记录只显示数据点；多条记录使用不过冲的平滑曲线连接。
 			if filteredPoints.count > 1 {
 				ForEach(filteredPoints, id: \.recordID) { point in
 					LineMark(
-						x: .value(L10n.string("时间"), point.measuredAt),
-						y: .value(L10n.string("尿酸"), point.value)
+						x: .value(L10n.string("TIME"), point.measuredAt),
+						y: .value(L10n.string("URIC_ACID"), point.value)
 					)
 					.interpolationMethod(lineInterpolation)
 					.foregroundStyle(
@@ -173,8 +173,8 @@ struct TrendsView: View {
 			// 数据点
 			ForEach(filteredPoints, id: \.recordID) { point in
 				PointMark(
-					x: .value(L10n.string("时间"), point.measuredAt),
-					y: .value(L10n.string("尿酸"), point.value)
+					x: .value(L10n.string("TIME"), point.measuredAt),
+					y: .value(L10n.string("URIC_ACID"), point.value)
 				)
 				.symbol {
 					Circle()
@@ -188,7 +188,7 @@ struct TrendsView: View {
 			}
 
 			if targetEnabled {
-				RuleMark(y: .value(L10n.string("目标"), targetValue))
+				RuleMark(y: .value(L10n.string("TARGET"), targetValue))
 					.lineStyle(StrokeStyle(lineWidth: 2, dash: [6, 4]))
 					.foregroundStyle(
 						LinearGradient(
@@ -263,7 +263,7 @@ struct TrendsView: View {
 			HStack {
 				Image(systemName: "chart.bar.fill")
 					.foregroundStyle(.purple)
-				Text("统计数据")
+				Text("STATISTICS")
 					.font(.system(size: 17, weight: .semibold))
 				Spacer()
 			}
@@ -273,25 +273,25 @@ struct TrendsView: View {
 				GridItem(.flexible())
 			], spacing: 12) {
 				StatItemView(
-					title: "平均值",
+					title: "STAT_AVERAGE",
 					value: formatValue(stats.average),
 					icon: "minus",
 					color: .blue
 				)
 				StatItemView(
-					title: "最小值",
+					title: "STAT_MINIMUM",
 					value: formatValue(stats.min),
 					icon: "arrow.down",
 					color: .green
 				)
 				StatItemView(
-					title: "最大值",
+					title: "STAT_MAXIMUM",
 					value: formatValue(stats.max),
 					icon: "arrow.up",
 					color: .orange
 				)
 				StatItemView(
-					title: "最新值",
+					title: "STAT_LATEST",
 					value: formatValue(stats.latest),
 					icon: "clock",
 					color: .purple
@@ -304,14 +304,14 @@ struct TrendsView: View {
 				
 				HStack(spacing: 16) {
 					TargetStatView(
-						title: "达标率",
+						title: "STAT_TARGET_RATE",
 						value: String(format: "%.0f%%", stats.targetRate * 100),
 						icon: "checkmark.circle.fill",
 						color: stats.targetRate >= 0.8 ? .green : .orange
 					)
 					
 					TargetStatView(
-						title: "距目标",
+						title: "STAT_TARGET_DIFFERENCE",
 						value: formatDelta(stats.latest - targetValue),
 						icon: (stats.latest - targetValue) <= 0 ? "arrow.down.circle.fill" : "arrow.up.circle.fill",
 						color: (stats.latest - targetValue) <= 0 ? .green : .red

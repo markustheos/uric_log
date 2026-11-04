@@ -56,7 +56,7 @@ private struct PrivacyConsentView: View {
 				Image(systemName: "drop.fill")
 					.font(.system(size: 54, weight: .semibold))
 					.foregroundStyle(.blue)
-				Text("尿酸记录")
+				Text("APP_NAME")
 					.font(.title.bold())
 			}
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -67,34 +67,34 @@ private struct PrivacyConsentView: View {
 				.ignoresSafeArea()
 
 			VStack(spacing: 22) {
-				Text("用户协议和隐私政策说明")
+				Text("PRIVACY_NOTICE_TITLE")
 					.font(.title3.weight(.semibold))
 					.multilineTextAlignment(.center)
 
 				VStack(spacing: 10) {
-					Text("请充分阅读并理解隐私政策。同意后，应用会初始化广告服务并展示广告。匿名功能统计不包含您的健康记录，也不受此授权选择影响。")
+					Text("AD_CONSENT_MESSAGE")
 						.font(.body)
 						.foregroundStyle(.secondary)
 						.multilineTextAlignment(.leading)
 
-					Text("不会上传您的尿酸记录、备注或其他健康内容。")
+					Text("HEALTH_DATA_PRIVACY_MESSAGE")
 						.font(.body.weight(.medium))
 						.frame(maxWidth: .infinity, alignment: .leading)
 
 					Link(
-						"查看隐私政策",
+						"VIEW_PRIVACY_POLICY",
 						destination: URL(string: "https://xiaochai.tech/uric_log/privacy-policy.html")!
 					)
 					.frame(maxWidth: .infinity, alignment: .leading)
 				}
 
-				Button("不同意", action: decline)
+				Button("DECLINE", action: decline)
 					.buttonStyle(.plain)
 					.font(.subheadline)
 					.foregroundStyle(.secondary)
 
 				Button(action: accept) {
-					Text("同意并继续")
+					Text("AGREE_AND_CONTINUE")
 						.font(.headline)
 						.frame(maxWidth: .infinity)
 						.padding(.vertical, 14)

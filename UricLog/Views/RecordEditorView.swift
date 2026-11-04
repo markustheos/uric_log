@@ -56,22 +56,22 @@ struct RecordEditorView: View {
         }
 		.scrollDismissesKeyboard(.interactively)
         .background(Color(.systemGroupedBackground))
-        .navigationTitle(L10n.string(record == nil ? "新增记录" : "编辑记录"))
+        .navigationTitle(L10n.string(record == nil ? "ADD_RECORD" : "EDIT_RECORD"))
         .navigationBarTitleDisplayMode(.large)
 	        .toolbar {
 	            ToolbarItem(placement: .cancellationAction) {
-	                Button("取消") {
+	                Button("CANCEL") {
 	                    Analytics.track("record_editor_cancelled", properties: ["mode": editorMode])
 	                    dismiss()
 	                }
 	            }
 	        }
-	        .alert("数值看起来异常", isPresented: $showingExtremeConfirm) {
-	            Button("取消", role: .cancel) {
+	        .alert("UNUSUAL_VALUE_TITLE", isPresented: $showingExtremeConfirm) {
+	            Button("CANCEL", role: .cancel) {
 	                Analytics.track("extreme_value_save_cancelled", properties: ["mode": editorMode])
 	                pendingSaveValue = nil
 	            }
-	            Button("仍要保存", role: .destructive) {
+	            Button("SAVE_ANYWAY", role: .destructive) {
 	                Analytics.track("extreme_value_save_confirmed", properties: ["mode": editorMode])
                 if let value = pendingSaveValue {
                     save(value: value)
@@ -79,7 +79,7 @@ struct RecordEditorView: View {
                 pendingSaveValue = nil
             }
         } message: {
-            Text("您输入的尿酸数值超出正常范围（50-1200 μmol/L），请确认是否正确。")
+            Text("UNUSUAL_VALUE_MESSAGE")
         }
         .sheet(isPresented: $showingReferenceInfo) {
             ReferenceInfoSheet()
@@ -107,17 +107,17 @@ struct RecordEditorView: View {
                     .foregroundStyle(.blue)
                     .font(.title2)
                 
-                Text("尿酸数值")
+                Text("URIC_ACID_VALUE")
                     .font(.headline)
                 
                 Spacer()
             }
             
             HStack(spacing: 12) {
-                TextField("输入数值", text: $valueText)
+                TextField("VALUE_PLACEHOLDER", text: $valueText)
                     .keyboardType(.decimalPad)
 					.focused($focusedField, equals: .value)
-                    .font(.system(size: 36, weight: .bold, design: .rounded))
+                    .font(.system(size: 32, weight: .bold, design: .rounded))
                     .multilineTextAlignment(.center)
                     .frame(height: 60)
                     .background(
@@ -163,7 +163,7 @@ struct RecordEditorView: View {
                     .foregroundStyle(.cyan)
                     .font(.title3)
                 
-                Text("参考范围")
+                Text("REFERENCE_RANGE")
                     .font(.headline)
                 
                 Spacer()
@@ -175,13 +175,13 @@ struct RecordEditorView: View {
                     Image(systemName: "questionmark.circle")
                         .foregroundStyle(.secondary)
                 }
-				.accessibilityLabel("来源与引用")
+				.accessibilityLabel("SOURCES_AND_REFERENCES")
             }
             
             // 当前性别对应的正常范围
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
-                    Text(L10n.format("您的正常范围（%@）", userGender.displayName))
+                    Text(L10n.format("PERSONAL_REFERENCE_RANGE", userGender.displayName))
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                     
@@ -191,7 +191,7 @@ struct RecordEditorView: View {
                 Text(userGender.normalRangeText(unit: selectedUnit))
                     .font(.system(size: 20, weight: .semibold, design: .rounded))
                     .foregroundStyle(.cyan)
-			Text("来源与引用：点击右上角 ? 查看")
+			Text("SOURCES_HINT")
 				.font(.caption)
 				.foregroundStyle(.secondary)
             }
@@ -232,13 +232,13 @@ struct RecordEditorView: View {
             Divider()
                 .padding(.vertical, 4)
             
-            Text("痛风控制目标")
+            Text("GOUT_CONTROL_TARGETS")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
             
             HStack(spacing: 16) {
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("一般痛风")
+                    Text("GOUT")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                     Text("< 360 μmol/L")
@@ -247,7 +247,7 @@ struct RecordEditorView: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("有痛风石/频繁发作")
+                    Text("TOPHI_OR_FREQUENT_FLARES")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                     Text("< 300 μmol/L")
@@ -267,7 +267,7 @@ struct RecordEditorView: View {
                     .foregroundStyle(.blue)
                     .font(.title3)
                 
-                Text("测量时间")
+                Text("MEASUREMENT_TIME")
                     .font(.headline)
                 
                 Spacer()
@@ -310,17 +310,17 @@ struct RecordEditorView: View {
                     .foregroundStyle(.blue)
                     .font(.title3)
                 
-                Text("备注")
+                Text("NOTES")
                     .font(.headline)
                 
                 Spacer()
                 
-                Text("可选")
+                Text("OPTIONAL")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
             
-            TextField("添加备注（如：空腹、餐后、用药后等）", text: $note, axis: .vertical)
+            TextField("NOTE_PLACEHOLDER", text: $note, axis: .vertical)
 				.focused($focusedField, equals: .note)
                 .lineLimit(3...5)
                 .padding()
@@ -346,9 +346,9 @@ struct RecordEditorView: View {
 					.padding(.top, 8)
 
 				HStack(spacing: 10) {
-					quickDateButton("今天", dayOffset: 0)
-					quickDateButton("昨天", dayOffset: -1)
-					Button("现在") { draftMeasuredAt = Date() }
+					quickDateButton("TODAY", dayOffset: 0)
+					quickDateButton("YESTERDAY", dayOffset: -1)
+					Button("NOW") { draftMeasuredAt = Date() }
 						.font(.subheadline.weight(.semibold))
 						.frame(maxWidth: .infinity)
 						.padding(.vertical, 10)
@@ -358,28 +358,28 @@ struct RecordEditorView: View {
 				}
 
 				VStack(spacing: 0) {
-					datePickerRow(title: "日期", components: .date)
+					datePickerRow(title: "DATE", components: .date)
 					Divider().padding(.leading, 16)
-					datePickerRow(title: "时间", components: .hourAndMinute)
+					datePickerRow(title: "TIME", components: .hourAndMinute)
 				}
 				.background(Color(.secondarySystemGroupedBackground))
 				.clipShape(RoundedRectangle(cornerRadius: 12))
 
-				Label("录入久远记录时，点开日期后轻点日历顶部的年月，即可快速切换年份", systemImage: "calendar.badge.clock")
+				Label("DATE_PICKER_YEAR_HINT", systemImage: "calendar.badge.clock")
 					.font(.caption)
 					.foregroundStyle(.secondary)
 					.frame(maxWidth: .infinity, alignment: .leading)
 				Spacer(minLength: 0)
 			}
 			.padding(.horizontal)
-			.navigationTitle("选择测量时间")
+			.navigationTitle("SELECT_MEASUREMENT_TIME")
 			.navigationBarTitleDisplayMode(.inline)
 			.toolbar {
 				ToolbarItem(placement: .cancellationAction) {
-					Button("取消") { showingDatePicker = false }
+					Button("CANCEL") { showingDatePicker = false }
 				}
 				ToolbarItem(placement: .confirmationAction) {
-					Button("完成") {
+					Button("DONE") {
 						measuredAt = draftMeasuredAt
 						showingDatePicker = false
 					}
@@ -433,7 +433,7 @@ struct RecordEditorView: View {
         } label: {
             HStack {
                 Image(systemName: "checkmark.circle.fill")
-                Text("保存")
+                Text("SAVE")
                     .fontWeight(.semibold)
             }
             .font(.headline)
@@ -540,11 +540,11 @@ struct ReferenceInfoSheet: View {
                 .padding()
             }
             .background(Color(.systemGroupedBackground))
-			.navigationTitle("参考信息")
+			.navigationTitle("REFERENCE_INFORMATION")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-	                    Button("完成") {
+	                    Button("DONE") {
 	                        Analytics.track("reference_info_closed")
 	                        dismiss()
 	                    }
@@ -558,7 +558,7 @@ struct ReferenceInfoSheet: View {
             HStack {
                 Image(systemName: "ruler.fill")
                     .foregroundStyle(.blue)
-                Text("单位换算")
+                Text("UNIT_CONVERSION")
                     .font(.headline)
                 Spacer()
             }
@@ -566,10 +566,10 @@ struct ReferenceInfoSheet: View {
             VStack(alignment: .leading, spacing: 8) {
                 Text("1 mg/dL ≈ 59.48 μmol/L")
                     .font(.system(size: 16, weight: .medium))
-                Text("常用单位：μmol/L（也常用 mg/dL）")
+                Text("COMMON_UNITS")
                     .font(.caption)
                     .foregroundStyle(.secondary)
-				Text("该换算基于尿酸分子量与单位换算，来源见下方「来源与引用」。")
+				Text("UNIT_CONVERSION_DESCRIPTION")
 					.font(.caption)
 					.foregroundStyle(.secondary)
             }
@@ -586,24 +586,24 @@ struct ReferenceInfoSheet: View {
             HStack {
                 Image(systemName: "person.2.fill")
                     .foregroundStyle(.green)
-				Text("常见参考范围（空腹、成人）")
+				Text("ADULT_REFERENCE_RANGES")
                     .font(.headline)
                 Spacer()
             }
 			
-			Text("不同医院与检测方法的参考区间可能不同，请以检验报告为准。来源见下方「来源与引用」。")
+			Text("REFERENCE_RANGE_DISCLAIMER")
 				.font(.caption)
 				.foregroundStyle(.secondary)
             
 			VStack(spacing: 12) {
 				normalRangeRow(
-					title: "成年男性",
+					title: "ADULT_MEN",
 					range: "208～428 μmol/L",
 					subRange: "(3.5～7.2 mg/dL)"
 				)
 				
 				normalRangeRow(
-					title: "成年女性",
+					title: "ADULT_WOMEN",
 					range: "155～357 μmol/L",
 					subRange: "(2.6～6.0 mg/dL)"
 				)
@@ -639,22 +639,22 @@ struct ReferenceInfoSheet: View {
             HStack {
                 Image(systemName: "exclamationmark.triangle.fill")
                     .foregroundStyle(.yellow)
-                Text("注意事项")
+                Text("IMPORTANT_NOTES")
                     .font(.headline)
                 Spacer()
             }
             
             VStack(alignment: .leading, spacing: 8) {
-				Text("• 本应用仅用于个人记录与参考，不提供医疗诊断或治疗建议")
+				Text("DISCLAIMER_PERSONAL_USE")
 					.font(.caption)
 					.foregroundStyle(.orange)
-                Text("• 以上参考值适用于空腹、成人血尿酸检测")
+                Text("DISCLAIMER_FASTING_ADULTS")
                     .font(.caption)
-                Text("• 不同医院、不同检测方法可能略有差异")
+                Text("DISCLAIMER_LAB_VARIATION")
                     .font(.caption)
-                Text("• 请以您就诊医院的参考范围为准")
+                Text("DISCLAIMER_LAB_REFERENCE")
                     .font(.caption)
-                Text("• 如有异常请咨询医生，不要自行诊断")
+                Text("DISCLAIMER_CONSULT_DOCTOR")
                     .font(.caption)
             }
             .padding()
@@ -670,22 +670,22 @@ struct ReferenceInfoSheet: View {
 			HStack {
 				Image(systemName: "book.fill")
 					.foregroundStyle(.indigo)
-				Text("来源与引用")
+				Text("SOURCES_AND_REFERENCES")
 					.font(.headline)
 				Spacer()
 			}
 			
 			VStack(alignment: .leading, spacing: 10) {
-				Link("中华内分泌代谢杂志：《中国高尿酸血症与痛风诊疗指南(2019)》", destination: URL(string: "https://seleguide.yiigle.com/uploads/guide_html/%E4%B8%AD%E5%9B%BD%E9%AB%98%E5%B0%BF%E9%85%B8%E8%A1%80%E7%97%87%E4%B8%8E%E7%97%9B%E9%A3%8E%E8%AF%8A%E7%96%97%E6%8C%87%E5%8D%97(2019).html")!)
+				Link("SOURCE_GOUT_GUIDELINE_2019", destination: URL(string: "https://seleguide.yiigle.com/uploads/guide_html/%E4%B8%AD%E5%9B%BD%E9%AB%98%E5%B0%BF%E9%85%B8%E8%A1%80%E7%97%87%E4%B8%8E%E7%97%9B%E9%A3%8E%E8%AF%8A%E7%96%97%E6%8C%87%E5%8D%97(2019).html")!)
 					.font(.caption)
 					.foregroundStyle(.blue)
-				Link("国家卫健委：成人高尿酸血症与痛风食养指南（2024年版）", destination: URL(string: "http://www.nhc.gov.cn/sps/c100088/202402/9ba512ba8e314a47a181db11d2fa188d.shtml")!)
+				Link("SOURCE_DIETARY_GUIDELINE_2024", destination: URL(string: "http://www.nhc.gov.cn/sps/c100088/202402/9ba512ba8e314a47a181db11d2fa188d.shtml")!)
 					.font(.caption)
 					.foregroundStyle(.blue)
-				Link("有来医生：尿酸正常值参考表（参考区间示例）", destination: URL(string: "https://m.youlai.cn/sjingbian/article/DD9828MtgUu.html")!)
+				Link("SOURCE_YOULAI_REFERENCE_RANGES", destination: URL(string: "https://m.youlai.cn/sjingbian/article/DD9828MtgUu.html")!)
 					.font(.caption)
 					.foregroundStyle(.blue)
-				Link("PubChem：Uric acid（分子量用于单位换算）", destination: URL(string: "https://pubchem.ncbi.nlm.nih.gov/compound/Uric-acid")!)
+				Link("SOURCE_PUBCHEM_URIC_ACID", destination: URL(string: "https://pubchem.ncbi.nlm.nih.gov/compound/Uric-acid")!)
 					.font(.caption)
 					.foregroundStyle(.blue)
 			}
