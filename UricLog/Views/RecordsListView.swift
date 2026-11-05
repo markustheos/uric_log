@@ -26,7 +26,7 @@ struct RecordsListView: View {
             .padding()
         }
         .background(Color(.systemGroupedBackground))
-        .navigationTitle("尿酸记录")
+        .navigationTitle("APP_NAME")
 	        .toolbar {
 	            ToolbarItem(placement: .topBarTrailing) {
 	                Button {
@@ -52,12 +52,12 @@ struct RecordsListView: View {
 			HStack {
 				Image(systemName: "calendar")
 					.foregroundStyle(.blue)
-				Text("时间范围")
+				Text("TIME_RANGE")
 					.font(.system(size: 17, weight: .semibold))
 				Spacer()
 			}
             
-            Picker("范围", selection: timeRangeSelection) {
+            Picker("RANGE", selection: timeRangeSelection) {
                 ForEach(TimeRange.allCases) { range in
                     Text(range.displayName).tag(range)
                 }
@@ -81,12 +81,12 @@ struct RecordsListView: View {
             HStack {
 				Image(systemName: "list.bullet.clipboard")
 					.foregroundStyle(.blue)
-				Text("记录列表")
+				Text("RECORDS_LIST")
 					.font(.system(size: 17, weight: .semibold))
                 
                 Spacer()
                 
-                Text(L10n.format("%d 条", filteredRecords.count))
+                Text(L10n.format("RECORD_COUNT_COMPACT", filteredRecords.count))
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .padding(.horizontal, 8)
@@ -146,11 +146,11 @@ struct RecordsListView: View {
                 .font(.system(size: 48))
                 .foregroundStyle(.blue.opacity(0.3))
             
-            Text("暂无记录")
+            Text("RECORDS_EMPTY_TITLE")
                 .font(.headline)
                 .foregroundStyle(.secondary)
             
-            Text("点击右上角 + 添加第一条尿酸记录")
+            Text("RECORDS_EMPTY_MESSAGE")
                 .font(.caption)
                 .foregroundStyle(.tertiary)
         }
@@ -303,19 +303,19 @@ struct RecordCard: View {
 	                Analytics.track("record_delete_requested")
 	                showingDeleteConfirm = true
             } label: {
-                Label("删除", systemImage: "trash")
+                Label("DELETE", systemImage: "trash")
             }
         }
-        .alert("确认删除", isPresented: $showingDeleteConfirm) {
-	            Button("取消", role: .cancel) {
+        .alert("RECORD_DELETE_CONFIRMATION", isPresented: $showingDeleteConfirm) {
+	            Button("CANCEL", role: .cancel) {
 	                Analytics.track("record_delete_cancelled")
 	            }
-	            Button("删除", role: .destructive) {
+	            Button("DELETE", role: .destructive) {
 	                Analytics.track("record_delete_confirmed")
 	                onDelete()
             }
         } message: {
-            Text("这条记录将被永久删除，无法恢复。")
+            Text("RECORD_DELETE_MESSAGE")
         }
     }
     

@@ -4,7 +4,7 @@ import CoreData
 @main
 struct UricLogApp: App {
 	@Environment(\.scenePhase) private var scenePhase
-	@AppStorage(AppSettingsKey.appLanguage) private var appLanguageRawValue = AppLanguage.simplifiedChinese.rawValue
+	@AppStorage(AppSettingsKey.appLanguage) private var appLanguageRawValue = AppLanguage.english.rawValue
 	@StateObject private var persistenceController: PersistenceController
 	@StateObject private var iCloudSettingsSync = ICloudSettingsSync()
 	@State private var backgroundEnteredAt: Date?
@@ -27,12 +27,12 @@ struct UricLogApp: App {
 							.environment(\.managedObjectContext, persistenceController.container.viewContext)
 							.environmentObject(persistenceController)
 					} else {
-						ProgressView("正在加载数据...")
+						ProgressView("DATA_LOADING")
 							.progressViewStyle(.circular)
 					}
 				}
 				.alert(
-					"存储初始化提示",
+					"STORAGE_NOTICE",
 					isPresented: Binding(
 						get: { persistenceController.loadErrorMessage != nil },
 						set: { newValue in
@@ -40,7 +40,7 @@ struct UricLogApp: App {
 						}
 					)
 					) {
-						Button("知道了") {
+						Button("OK") {
 							Analytics.track("storage_error_acknowledged")
 						}
 				} message: {
@@ -73,6 +73,6 @@ struct UricLogApp: App {
 	}
 
 	private var appLanguage: AppLanguage {
-		AppLanguage(rawValue: appLanguageRawValue) ?? .simplifiedChinese
+		AppLanguage(rawValue: appLanguageRawValue) ?? .english
 	}
 }

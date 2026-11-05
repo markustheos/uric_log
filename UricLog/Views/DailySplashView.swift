@@ -80,9 +80,9 @@ private struct DailySplashView: View {
 				.frame(width: 180, height: 120)
 
 				VStack(spacing: 7) {
-					Text("尿酸记录")
+					Text("APP_NAME")
 						.font(.system(size: 32, weight: .bold, design: .rounded))
-					Text("记录变化，关注趋势")
+					Text("SPLASH_TAGLINE")
 						.font(.subheadline)
 						.foregroundStyle(.secondary)
 				}
@@ -91,7 +91,7 @@ private struct DailySplashView: View {
 			}
 		}
 		.accessibilityElement(children: .combine)
-		.accessibilityLabel("尿酸记录")
+		.accessibilityLabel("APP_NAME")
 		.onAppear {
 			if reduceMotion {
 				dropSettled = true

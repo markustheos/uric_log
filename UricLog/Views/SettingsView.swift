@@ -14,7 +14,7 @@ struct SettingsView: View {
 	@AppStorage(AppSettingsKey.targetEnabled) private var targetEnabled = false
 	@AppStorage(AppSettingsKey.targetValue) private var targetValue: Double = 420
 	@AppStorage(AppSettingsKey.iCloudEnabled) private var iCloudEnabled = false
-	@AppStorage(AppSettingsKey.appLanguage) private var appLanguageRawValue = AppLanguage.simplifiedChinese.rawValue
+	@AppStorage(AppSettingsKey.appLanguage) private var appLanguageRawValue = AppLanguage.english.rawValue
 	@AppStorage(AppSettingsKey.measurementReminderEnabled) private var reminderEnabled = false
 	@AppStorage(AppSettingsKey.measurementReminderWeekdays) private var reminderWeekdaysRawValue = "2,4,6"
 	@AppStorage(AppSettingsKey.measurementReminderHour) private var reminderHour = 9
@@ -56,26 +56,26 @@ struct SettingsView: View {
 			focusedField = nil
 		}
 		.background(Color(.systemGroupedBackground))
-		.navigationTitle("设置")
+		.navigationTitle("TAB_SETTINGS")
 		.sheet(isPresented: $showingHiddenSettings) {
 			HiddenSettingsView()
 		}
-		.alert("需要重启", isPresented: $showingRestartHint) {
-				Button("知道了") {
+		.alert("RESTART_RECOMMENDED", isPresented: $showingRestartHint) {
+				Button("OK") {
 					Analytics.track("icloud_restart_hint_acknowledged")
 				}
 		} message: {
-			Text("iCloud 同步开关切换后，建议杀掉 App 重启一次。")
+			Text("ICLOUD_RESTART_MESSAGE")
 		}
-		.alert("无法开启提醒", isPresented: $showingNotificationPermissionAlert) {
-			Button("知道了", role: .cancel) {}
-			Button("前往系统设置") {
+		.alert("REMINDER_ENABLE_ERROR", isPresented: $showingNotificationPermissionAlert) {
+			Button("OK", role: .cancel) {}
+			Button("OPEN_SYSTEM_SETTINGS") {
 				if let url = URL(string: UIApplication.openSettingsURLString) {
 					UIApplication.shared.open(url)
 				}
 			}
 		} message: {
-			Text("请在系统设置中允许尿酸记录发送通知。")
+			Text("NOTIFICATION_PERMISSION_HINT")
 		}
 		.onAppear {
 			lastPreferredUnitRawValue = preferredUnitRawValue
@@ -114,7 +114,7 @@ struct SettingsView: View {
 				Image(systemName: "gearshape.fill")
 					.font(.title3)
 					.foregroundStyle(.blue)
-				Text("偏好设置")
+				Text("PREFERENCES")
 					.font(.system(size: 17, weight: .semibold))
 				Spacer()
 			}
@@ -124,16 +124,16 @@ struct SettingsView: View {
 					SettingIconView(icon: "globe", color: .teal)
 
 					VStack(alignment: .leading, spacing: 4) {
-						Text("应用语言")
+						Text("APP_LANGUAGE")
 							.font(.system(size: 16))
-						Text("选择应用界面使用的语言")
+						Text("APP_LANGUAGE_DESCRIPTION")
 							.font(.caption)
 							.foregroundStyle(.secondary)
 					}
 
 					Spacer()
 
-					Picker("语言", selection: $appLanguageRawValue) {
+					Picker("LANGUAGE", selection: $appLanguageRawValue) {
 						ForEach(AppLanguage.allCases) { language in
 							Text(language.displayName).tag(language.rawValue)
 						}
@@ -156,16 +156,16 @@ struct SettingsView: View {
 					SettingIconView(icon: "ruler.fill", color: .blue)
 					
 					VStack(alignment: .leading, spacing: 4) {
-						Text("测量单位")
+						Text("MEASUREMENT_UNIT")
 							.font(.system(size: 16))
-						Text("选择尿酸值的显示单位")
+						Text("MEASUREMENT_UNIT_DESCRIPTION")
 							.font(.caption)
 							.foregroundStyle(.secondary)
 					}
 					
 					Spacer()
 					
-					Picker("单位", selection: $preferredUnitRawValue) {
+					Picker("UNIT", selection: $preferredUnitRawValue) {
 						ForEach(UricUnit.allCases) { unit in
 							Text(unit.displayName).tag(unit.rawValue)
 						}
@@ -183,16 +183,16 @@ struct SettingsView: View {
 					SettingIconView(icon: "person.fill", color: .pink)
 					
 					VStack(alignment: .leading, spacing: 4) {
-						Text("性别")
+						Text("SEX")
 							.font(.system(size: 16))
-						Text("用于显示对应的参考范围")
+						Text("SEX_DESCRIPTION")
 							.font(.caption)
 							.foregroundStyle(.secondary)
 					}
 					
 					Spacer()
 					
-					Picker("性别", selection: $userGenderRawValue) {
+					Picker("SEX", selection: $userGenderRawValue) {
 						ForEach(UserGender.allCases) { gender in
 							Text(gender.displayName).tag(gender.rawValue)
 						}
@@ -210,9 +210,9 @@ struct SettingsView: View {
 					SettingIconView(icon: "target", color: .orange)
 					
 					VStack(alignment: .leading, spacing: 4) {
-						Text("启用目标值")
+						Text("ENABLE_TARGET")
 							.font(.system(size: 16))
-						Text("设置并追踪尿酸目标值")
+						Text("TARGET_DESCRIPTION")
 							.font(.caption)
 							.foregroundStyle(.secondary)
 					}
@@ -233,9 +233,9 @@ struct SettingsView: View {
 						SettingIconView(icon: "number", color: .green)
 						
 						VStack(alignment: .leading, spacing: 4) {
-							Text("目标数值")
+							Text("TARGET_VALUE")
 								.font(.system(size: 16))
-							Text("理想尿酸值上限")
+							Text("TARGET_VALUE_DESCRIPTION")
 								.font(.caption)
 								.foregroundStyle(.secondary)
 						}
@@ -280,7 +280,7 @@ struct SettingsView: View {
 				Image(systemName: "bell.badge.fill")
 					.font(.title3)
 					.foregroundStyle(.orange)
-				Text("测量提醒")
+				Text("MEASUREMENT_REMINDERS")
 					.font(.system(size: 17, weight: .semibold))
 				Spacer()
 			}
@@ -289,9 +289,9 @@ struct SettingsView: View {
 				HStack(spacing: 12) {
 					SettingIconView(icon: "bell.fill", color: .orange)
 					VStack(alignment: .leading, spacing: 4) {
-						Text("定期提醒")
+						Text("SCHEDULED_REMINDERS")
 							.font(.system(size: 16))
-						Text("按选择的星期提醒测量尿酸")
+						Text("REMINDER_SCHEDULE_DESCRIPTION")
 							.font(.caption)
 							.foregroundStyle(.secondary)
 					}
@@ -308,7 +308,7 @@ struct SettingsView: View {
 					Divider().padding(.leading, 44)
 
 					VStack(alignment: .leading, spacing: 12) {
-						Text("提醒日期")
+						Text("REMINDER_DAYS")
 							.font(.subheadline)
 							.foregroundStyle(.secondary)
 						HStack(spacing: 8) {
@@ -333,7 +333,7 @@ struct SettingsView: View {
 
 					HStack(spacing: 12) {
 						SettingIconView(icon: "clock.fill", color: .blue)
-						Text("提醒时间")
+						Text("REMINDER_TIME")
 							.font(.system(size: 16))
 						Spacer()
 						DatePicker("", selection: reminderTime, displayedComponents: .hourAndMinute)
@@ -354,7 +354,7 @@ struct SettingsView: View {
 	}
 
 	private var reminderDayOptions: [(weekday: Int, title: String)] {
-		[(2, "周一"), (3, "周二"), (4, "周三"), (5, "周四"), (6, "周五"), (7, "周六"), (1, "周日")]
+		[(2, "WEEKDAY_MON"), (3, "WEEKDAY_TUE"), (4, "WEEKDAY_WED"), (5, "WEEKDAY_THU"), (6, "WEEKDAY_FRI"), (7, "WEEKDAY_SAT"), (1, "WEEKDAY_SUN")]
 			.map { ($0.0, L10n.string($0.1)) }
 	}
 
@@ -432,7 +432,7 @@ struct SettingsView: View {
 				Image(systemName: "square.and.arrow.up.fill")
 					.font(.title3)
 					.foregroundStyle(.green)
-				Text("数据导出")
+				Text("DATA_EXPORT")
 					.font(.system(size: 17, weight: .semibold))
 				Spacer()
 			}
@@ -443,16 +443,16 @@ struct SettingsView: View {
 					SettingIconView(icon: "calendar", color: .purple)
 					
 					VStack(alignment: .leading, spacing: 4) {
-						Text("导出范围")
+						Text("EXPORT_RANGE")
 							.font(.system(size: 16))
-						Text("选择要导出的时间范围")
+						Text("EXPORT_RANGE_DESCRIPTION")
 							.font(.caption)
 							.foregroundStyle(.secondary)
 					}
 					
 					Spacer()
 					
-					Picker("范围", selection: $exportRange) {
+					Picker("RANGE", selection: $exportRange) {
 						ForEach(TimeRange.allCases) { range in
 							Text(range.displayName).tag(range)
 						}
@@ -471,10 +471,10 @@ struct SettingsView: View {
 						SettingIconView(icon: "doc.text", color: .cyan)
 						
 						VStack(alignment: .leading, spacing: 4) {
-							Text("导出 CSV 文件")
+							Text("EXPORT_CSV")
 								.font(.system(size: 16))
 								.foregroundStyle(.primary)
-							Text("生成可分享的 CSV 文件")
+							Text("EXPORT_CSV_DESCRIPTION")
 								.font(.caption)
 								.foregroundStyle(.secondary)
 						}
@@ -498,9 +498,9 @@ struct SettingsView: View {
 							SettingIconView(icon: "square.and.arrow.up", color: .indigo)
 							
 							VStack(alignment: .leading, spacing: 4) {
-								Text("分享 CSV 文件")
+								Text("SHARE_CSV")
 									.font(.system(size: 16))
-								Text("通过系统分享发送")
+								Text("SHARE_CSV_DESCRIPTION")
 									.font(.caption)
 									.foregroundStyle(.secondary)
 							}
@@ -549,7 +549,7 @@ struct SettingsView: View {
 				Image(systemName: "info.circle.fill")
 					.font(.title3)
 					.foregroundStyle(.indigo)
-				Text("关于")
+				Text("ABOUT")
 					.font(.system(size: 17, weight: .semibold))
 				Spacer()
 			}
@@ -561,9 +561,9 @@ struct SettingsView: View {
 						SettingIconView(icon: iCloudEnabled ? "icloud.fill" : "icloud.slash", color: iCloudEnabled ? .blue : .secondary)
 						
 						VStack(alignment: .leading, spacing: 4) {
-							Text("iCloud 同步")
+							Text("ICLOUD_SYNC")
 								.font(.system(size: 16))
-							Text(iCloudEnabled ? persistence.iCloudStatus : L10n.string("当前仅本地存储"))
+							Text(iCloudEnabled ? persistence.iCloudStatus : L10n.string("LOCAL_STORAGE_ONLY"))
 								.font(.caption)
 								.foregroundStyle(iCloudStatusColor)
 								.fixedSize(horizontal: false, vertical: true)
@@ -594,7 +594,7 @@ struct SettingsView: View {
 					HStack(spacing: 12) {
 						SettingIconView(icon: "hand.raised.fill", color: .teal)
 
-						Text("查看隐私政策")
+						Text("VIEW_PRIVACY_POLICY")
 							.font(.system(size: 16))
 							.foregroundStyle(.primary)
 
@@ -619,7 +619,7 @@ struct SettingsView: View {
 					SettingIconView(icon: "v.square", color: .secondary)
 					
 					VStack(alignment: .leading, spacing: 4) {
-						Text("版本")
+						Text("APP_VERSION")
 							.font(.system(size: 16))
 						Text(appVersionText)
 							.font(.caption)
@@ -692,83 +692,83 @@ private struct HiddenSettingsView: View {
 		NavigationStack {
 			List {
 				Section {
-					Picker("广告提供方", selection: $adProviderRawValue) {
+					Picker("AD_PROVIDER", selection: $adProviderRawValue) {
 						ForEach(AdProviderPreference.allCases) { provider in
 							Text(provider.displayName).tag(provider.rawValue)
 						}
 					}
 					.pickerStyle(.segmented)
 				} header: {
-					Text("广告提供方测试")
+					Text("AD_PROVIDER_TESTING")
 				} footer: {
-					Text("默认模式：中国大陆 App Store 使用友盟，其他地区使用 AdMob。切换后请重新启动 App。")
+					Text("AD_PROVIDER_DESCRIPTION")
 				}
 
 				Section {
 					Button {
 						showingPrivacyResetConfirmation = true
 					} label: {
-						Label("重置隐私授权", systemImage: "hand.raised")
+						Label("RESET_PRIVACY_CONSENT", systemImage: "hand.raised")
 					}
 
 					Button {
 						showingAdResetConfirmation = true
 					} label: {
-						Label("重置广告展示", systemImage: "rectangle.badge.xmark")
+						Label("RESET_AD_DISPLAY", systemImage: "rectangle.badge.xmark")
 					}
 
 					#if DEBUG
 					Button {
 						showingAdMobPrivacyResetConfirmation = true
 					} label: {
-						Label("测试 AdMob 隐私弹窗", systemImage: "hand.raised.square")
+						Label("ADMOB_PRIVACY_TEST", systemImage: "hand.raised.square")
 					}
 					#endif
 				} footer: {
-					Text("重置后请彻底关闭并重新打开 App。尿酸记录和设置不会被删除。")
+					Text("RESET_RESTART_MESSAGE")
 				}
 			}
-			.navigationTitle("内部设置")
+			.navigationTitle("INTERNAL_SETTINGS")
 			.navigationBarTitleDisplayMode(.inline)
 			.toolbar {
 				ToolbarItem(placement: .confirmationAction) {
-					Button("完成") { dismiss() }
+					Button("DONE") { dismiss() }
 				}
 			}
 			.confirmationDialog(
-				"确认重置隐私授权？",
+				"RESET_PRIVACY_CONFIRMATION",
 				isPresented: $showingPrivacyResetConfirmation,
 				titleVisibility: .visible
 			) {
-				Button("重置隐私授权", role: .destructive) {
+				Button("RESET_PRIVACY_CONSENT", role: .destructive) {
 					UserDefaults.standard.removeObject(forKey: AppSettingsKey.privacyConsentGranted)
 					UserDefaults.standard.removeObject(forKey: AppSettingsKey.privacyConsentChoiceMade)
 					dismiss()
 				}
 			}
 			.confirmationDialog(
-				"下次启动时模拟欧洲地区并显示 AdMob 隐私弹窗？",
+				"ADMOB_PRIVACY_TEST_CONFIRMATION",
 				isPresented: $showingAdMobPrivacyResetConfirmation,
 				titleVisibility: .visible
 			) {
-				Button("重置并退出设置", role: .destructive) {
+				Button("RESET_AND_CLOSE_SETTINGS", role: .destructive) {
 					adProviderRawValue = AdProviderPreference.admob.rawValue
 					AppOpenAdManager.shared.resetAdMobPrivacyConsentForTesting()
 					dismiss()
 				}
 			}
 			.confirmationDialog(
-				"确认重置今日广告展示记录和地区缓存？",
+				"RESET_AD_CACHE_CONFIRMATION",
 				isPresented: $showingAdResetConfirmation,
 				titleVisibility: .visible
 			) {
-				Button("重置广告展示", role: .destructive) {
+				Button("RESET_AD_DISPLAY", role: .destructive) {
 					AppOpenAdManager.shared.resetDailyExposure()
 					UserDefaults.standard.removeObject(forKey: AppSettingsKey.cachedStorefrontCountryCode)
 					dismiss()
 				}
 			} message: {
-				Text("下次启动将使用系统地区，并在后台重新获取 App Store 地区。")
+				Text("STORE_REGION_REFRESH_MESSAGE")
 			}
 		}
 	}
