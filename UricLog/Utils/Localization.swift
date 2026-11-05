@@ -80,10 +80,24 @@ enum AppLanguage: String, CaseIterable, Identifiable {
 		return .english
 	}
 
+	/// Unit used for a new installation when no preference has been saved yet.
+	/// Italian clinical reports conventionally use mg/dL. For the other
+	/// supported languages the convention depends heavily on country and
+	/// health system, so keep the unambiguous SI default (μmol/L) rather than
+	/// guessing from language alone. Existing selections are never overwritten.
+	static func defaultUnit(for language: AppLanguage) -> UricUnit {
+		switch language {
+		case .italian:
+			return .mgdL
+		default:
+			return .umolL
+		}
+	}
+
 	private static func initializeUnitIfNeeded(for language: AppLanguage, userDefaults: UserDefaults) {
 		let savedUnit = userDefaults.string(forKey: AppSettingsKey.preferredUnit)
 			.flatMap(UricUnit.init(rawValue:))
-		let unit = savedUnit ?? (language == .italian ? .mgdL : .umolL)
+		let unit = savedUnit ?? defaultUnit(for: language)
 		let hasSavedTarget = userDefaults.object(forKey: AppSettingsKey.targetValue) != nil
 
 		if savedUnit == nil || !hasSavedTarget {

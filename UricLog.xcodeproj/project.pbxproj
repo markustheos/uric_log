@@ -26,8 +26,6 @@
 		A1B2C3D4E5F6010203040D02 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6010203040D01 /* Localization.swift */; };
 		A1B2C3D4E5F6010203040E02 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6010203040E01 /* Localizable.strings */; };
 		A1B2C3D4E5F6010203040F02 /* DailySplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6010203040F01 /* DailySplashView.swift */; };
-		A1B2C3D4E5F6010203041102 /* AppOpenAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6010203041101 /* AppOpenAdManager.swift */; };
-		A1B2C3D4E5F6010203041302 /* PrivacyConsentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6010203041301 /* PrivacyConsentView.swift */; };
 		A1B2C3D4E5F6010203041402 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6010203041401 /* InfoPlist.strings */; };
 		A1B2C3D4E5F6010203041502 /* MeasurementReminderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6010203041501 /* MeasurementReminderManager.swift */; };
 		FB2C1579ABD51122ABEE4306 /* libPods-UricLog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C6465FB09E23B4E7DB06276 /* libPods-UricLog.a */; };
@@ -58,9 +56,7 @@
 		A1B2C3D4E5F6010203040E03 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A1B2C3D4E5F6010203040E04 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A1B2C3D4E5F6010203040F01 /* DailySplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySplashView.swift; sourceTree = "<group>"; };
-		A1B2C3D4E5F6010203041101 /* AppOpenAdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOpenAdManager.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F6010203041201 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A1B2C3D4E5F6010203041301 /* PrivacyConsentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyConsentView.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F6010203041403 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A1B2C3D4E5F6010203041404 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		A1B2C3D4E5F6010203041501 /* MeasurementReminderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementReminderManager.swift; sourceTree = "<group>"; };
@@ -155,7 +151,6 @@
 			isa = PBXGroup;
 			children = (
 				A1B2C3D4E5F6010203040F01 /* DailySplashView.swift */,
-				A1B2C3D4E5F6010203041301 /* PrivacyConsentView.swift */,
 				A1B2C3D4E5F601020304050F /* RootTabView.swift */,
 				A1B2C3D4E5F6010203040511 /* RecordsListView.swift */,
 				A1B2C3D4E5F6010203040513 /* RecordEditorView.swift */,
@@ -172,7 +167,6 @@
 				A1B2C3D4E5F6010203040611 /* DateFormatter.swift */,
 				A1B2C3D4E5F6010203040A01 /* ICloudSettingsSync.swift */,
 				A1B2C3D4E5F6010203040C01 /* Analytics.swift */,
-				A1B2C3D4E5F6010203041101 /* AppOpenAdManager.swift */,
 				A1B2C3D4E5F6010203040D01 /* Localization.swift */,
 				A1B2C3D4E5F6010203041501 /* MeasurementReminderManager.swift */,
 			);
@@ -332,11 +326,9 @@
 				A1B2C3D4E5F6010203040610 /* DateFormatter.swift in Sources */,
 				A1B2C3D4E5F6010203040A02 /* ICloudSettingsSync.swift in Sources */,
 				A1B2C3D4E5F6010203040C02 /* Analytics.swift in Sources */,
-				A1B2C3D4E5F6010203041102 /* AppOpenAdManager.swift in Sources */,
 				A1B2C3D4E5F6010203041502 /* MeasurementReminderManager.swift in Sources */,
 				A1B2C3D4E5F6010203040D02 /* Localization.swift in Sources */,
 				A1B2C3D4E5F6010203040F02 /* DailySplashView.swift in Sources */,
-				A1B2C3D4E5F6010203041302 /* PrivacyConsentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,7 +370,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4BF7AFE14D05216A79CFFC5E /* Pods-UricLog.debug.xcconfig */;
 			buildSettings = {
-				ADMOB_APP_ID = "ca-app-pub-3940256099942544~1458002511";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -447,7 +438,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 297F84342601D8D366355D0A /* Pods-UricLog.release.xcconfig */;
 			buildSettings = {
-				ADMOB_APP_ID = "ca-app-pub-7908959231552914~5056259782";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;

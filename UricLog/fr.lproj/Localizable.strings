@@ -60,14 +60,6 @@
 "SAVE" = "Enregistrer";
 "REFERENCE_INFORMATION" = "Informations de référence";
 "DONE" = "Terminé";
-"AD_CONSENT_MESSAGE" = "Veuillez lire attentivement la politique de confidentialité. Avec votre consentement, l'app initialise les services publicitaires et affiche des annonces. Les statistiques anonymes d'utilisation des fonctionnalités n'incluent pas vos données de santé et ne dépendent pas de ce choix.";
-"AD_PROVIDER_TESTING" = "Test des fournisseurs publicitaires";
-"AD_PROVIDER" = "Fournisseur publicitaire";
-"AD_PROVIDER_AUTOMATIC" = "Par défaut (région de l'App Store)";
-"AD_PROVIDER_UMENG" = "Umeng";
-"AD_PROVIDER_DESCRIPTION" = "Le mode par défaut utilise Umeng pour l'App Store de Chine continentale et AdMob dans les autres régions. Redémarrez l'app après toute modification.";
-"ADMOB_PRIVACY_TEST" = "Tester le formulaire de confidentialité AdMob";
-"ADMOB_PRIVACY_TEST_CONFIRMATION" = "Simuler la région européenne et afficher le formulaire de confidentialité AdMob au prochain lancement ?";
 "RESET_AND_CLOSE_SETTINGS" = "Réinitialiser et fermer les réglages";
 "UNIT_CONVERSION" = "Conversion des unités";
 "COMMON_UNITS" = "Unités courantes : μmol/L et mg/dL";
@@ -141,7 +133,6 @@
 
 "STATUS_CHECKING" = "Vérification...";
 "STATUS_DISABLED" = "Désactivé";
-"ICLOUD_LOAD_ERROR" = "Impossible d'initialiser le stockage iCloud. L'app utilise désormais le stockage local.\n\n%@";
 "STATUS_CONNECTION_FAILED" = "Échec de la connexion";
 "STATUS_CONNECTED" = "Connecté";
 "ICLOUD_ACCOUNT_AVAILABLE" = "Compte disponible";
@@ -171,20 +162,10 @@
 "EXPORT_ERROR" = "Échec de l'exportation";
 "SPLASH_TAGLINE" = "Notez les valeurs, suivez leur évolution.";
 "PRIVACY" = "Confidentialité";
-"PRIVACY_NOTICE_TITLE" = "Conditions d'utilisation et politique de confidentialité";
-"PRIVACY_NOTICE_LEGACY" = "Veuillez lire attentivement la politique de confidentialité. Nous recueillons des informations anonymes et limitées sur l'utilisation des fonctionnalités, indépendamment du consentement publicitaire. Avec votre consentement, l'app peut activer les services publicitaires et afficher des annonces.";
 "HEALTH_DATA_PRIVACY_MESSAGE" = "Vos valeurs d'uricémie, vos notes et vos autres données de santé ne sont pas transmises aux services d'analyse ou de publicité. Si vous activez iCloud, elles sont synchronisées via Apple CloudKit.";
 "DECLINE" = "Je refuse";
-"PRIVACY_SUMMARY_LEGACY" = "Nous recueillons des statistiques d'utilisation anonymes et limitées, indépendamment du consentement publicitaire. Des annonces peuvent être affichées avec votre consentement. Les données de santé ne sont pas transmises aux services d'analyse ou de publicité ; elles sont synchronisées via Apple CloudKit uniquement si vous activez iCloud.";
-"VIEW_PRIVACY_POLICY" = "Consulter la politique de confidentialité";
 "AGREE_AND_CONTINUE" = "Accepter et continuer";
 "CONTINUE_WITHOUT_CONSENT" = "Continuer sans accepter";
-"CONSENT_DECLINED_MESSAGE" = "Vous pouvez continuer à enregistrer des données localement sans accepter. Les services publicitaires soumis à ce consentement ne seront pas activés ; les statistiques anonymes d'utilisation restent indépendantes de votre choix.";
 "INTERNAL_SETTINGS" = "Réglages internes";
-"RESET_PRIVACY_CONSENT" = "Réinitialiser le consentement de confidentialité";
-"RESET_AD_DISPLAY" = "Réinitialiser l'affichage des annonces";
 "RESET_RESTART_MESSAGE" = "Après la réinitialisation, fermez complètement l'app et rouvrez-la. Vos mesures d'uricémie et vos réglages ne seront pas supprimés.";
-"RESET_PRIVACY_CONFIRMATION" = "Réinitialiser le consentement de confidentialité ?";
-"RESET_AD_DISPLAY_CONFIRMATION" = "Réinitialiser l'historique des annonces affichées aujourd'hui ?";
-"RESET_AD_CACHE_CONFIRMATION" = "Réinitialiser l'historique des annonces affichées aujourd'hui et le cache de la région ?";
 "STORE_REGION_REFRESH_MESSAGE" = "Au prochain lancement, l'app utilisera la région du système et actualisera la région de l'App Store en arrière-plan.";

@@ -1,10 +1,6 @@
 platform :ios, '17.0'
 
 target 'UricLog' do
-  pod 'UMCommon'
-  pod 'UMDevice'
-  pod 'UMUnionSDK'
-  pod 'Google-Mobile-Ads-SDK'
 end
 
 post_install do |installer|

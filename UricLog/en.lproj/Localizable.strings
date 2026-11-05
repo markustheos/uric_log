@@ -60,14 +60,6 @@
 "SAVE" = "Save";
 "REFERENCE_INFORMATION" = "Reference Information";
 "DONE" = "Done";
-"AD_CONSENT_MESSAGE" = "Please read and understand our Privacy Policy. With your consent, the app initializes advertising services and displays ads. Anonymous feature analytics never includes your health records and is not affected by this choice.";
-"AD_PROVIDER_TESTING" = "Ad Provider Testing";
-"AD_PROVIDER" = "Ad Provider";
-"AD_PROVIDER_AUTOMATIC" = "Default (App Store Region)";
-"AD_PROVIDER_UMENG" = "Umeng";
-"AD_PROVIDER_DESCRIPTION" = "Default mode uses Umeng for the China mainland App Store and AdMob elsewhere. Restart the app after switching.";
-"ADMOB_PRIVACY_TEST" = "Test AdMob Privacy Form";
-"ADMOB_PRIVACY_TEST_CONFIRMATION" = "Simulate the European region and show the AdMob privacy form on the next launch?";
 "RESET_AND_CLOSE_SETTINGS" = "Reset and Close Settings";
 "UNIT_CONVERSION" = "Unit Conversion";
 "COMMON_UNITS" = "Common units: μmol/L and mg/dL";
@@ -82,9 +74,9 @@
 "DISCLAIMER_LAB_VARIATION" = "• Values may vary between laboratories and test methods.";
 "DISCLAIMER_LAB_REFERENCE" = "• Follow the reference range provided by your healthcare provider.";
 "DISCLAIMER_CONSULT_DOCTOR" = "• Consult a healthcare professional about abnormal results. Do not self-diagnose.";
-"SOURCE_GOUT_GUIDELINE_2019" = "Chinese Society of Endocrinology: Guideline for Hyperuricemia and Gout (2019)";
-"SOURCE_DIETARY_GUIDELINE_2024" = "National Health Commission of China: Dietary Guidance for Hyperuricemia and Gout (2024)";
-"SOURCE_YOULAI_REFERENCE_RANGES" = "Youlai: Uric Acid Reference Range Examples";
+"SOURCE_GOUT_GUIDELINE_2019" = "American College of Rheumatology: Gout Management Guideline (2019)";
+"SOURCE_DIETARY_GUIDELINE_2024" = "EULAR: Recommendations for the Management of Gout";
+"SOURCE_YOULAI_REFERENCE_RANGES" = "MedlinePlus: Uric Acid Blood Test (Reference Information)";
 "SOURCE_PUBCHEM_URIC_ACID" = "PubChem: Uric Acid (Molecular Weight for Unit Conversion)";
 
 "URIC_ACID_TREND" = "Uric Acid Trend";
@@ -141,7 +133,6 @@
 
 "STATUS_CHECKING" = "Checking...";
 "STATUS_DISABLED" = "Disabled";
-"ICLOUD_LOAD_ERROR" = "iCloud storage could not be initialized. The app has switched to local storage.\n\n%@";
 "STATUS_CONNECTION_FAILED" = "Connection Failed";
 "STATUS_CONNECTED" = "Connected";
 "ICLOUD_ACCOUNT_AVAILABLE" = "Account Available";
@@ -171,20 +162,10 @@
 "EXPORT_ERROR" = "Export Failed";
 "SPLASH_TAGLINE" = "Track Changes. See the Trend.";
 "PRIVACY" = "Privacy";
-"PRIVACY_NOTICE_TITLE" = "User Agreement and Privacy Policy";
-"PRIVACY_NOTICE_LEGACY" = "Please read and understand our Privacy Policy. With your consent, we collect limited anonymous usage information for feature analytics and use advertising services to display ads.";
 "HEALTH_DATA_PRIVACY_MESSAGE" = "Your uric acid records, notes, and other health content are never uploaded.";
 "DECLINE" = "Disagree";
-"PRIVACY_SUMMARY_LEGACY" = "With your consent, we collect limited anonymous usage information for feature analytics and use advertising services to display ads. Uric acid records, notes, and other health content are never uploaded.";
-"VIEW_PRIVACY_POLICY" = "View Privacy Policy";
 "AGREE_AND_CONTINUE" = "Agree and Continue";
 "CONTINUE_WITHOUT_CONSENT" = "Continue Without Agreeing";
-"CONSENT_DECLINED_MESSAGE" = "You can still use local record features without agreeing, but analytics and advertising services will remain disabled.";
 "INTERNAL_SETTINGS" = "Internal Settings";
-"RESET_PRIVACY_CONSENT" = "Reset Privacy Consent";
-"RESET_AD_DISPLAY" = "Reset Ad Display";
 "RESET_RESTART_MESSAGE" = "After resetting, fully close and reopen the app. Your uric acid records and settings will not be deleted.";
-"RESET_PRIVACY_CONFIRMATION" = "Reset privacy consent?";
-"RESET_AD_DISPLAY_CONFIRMATION" = "Reset today's ad display record?";
-"RESET_AD_CACHE_CONFIRMATION" = "Reset today's ad display record and region cache?";
 "STORE_REGION_REFRESH_MESSAGE" = "On the next launch, the app will use the system region and refresh the App Store region in the background.";

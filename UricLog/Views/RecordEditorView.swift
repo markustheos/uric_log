@@ -676,13 +676,13 @@ struct ReferenceInfoSheet: View {
 			}
 			
 			VStack(alignment: .leading, spacing: 10) {
-				Link("SOURCE_GOUT_GUIDELINE_2019", destination: URL(string: "https://seleguide.yiigle.com/uploads/guide_html/%E4%B8%AD%E5%9B%BD%E9%AB%98%E5%B0%BF%E9%85%B8%E8%A1%80%E7%97%87%E4%B8%8E%E7%97%9B%E9%A3%8E%E8%AF%8A%E7%96%97%E6%8C%87%E5%8D%97(2019).html")!)
+				Link("SOURCE_GOUT_GUIDELINE_2019", destination: URL(string: "https://doi.org/10.1002/acr.24180")!)
 					.font(.caption)
 					.foregroundStyle(.blue)
-				Link("SOURCE_DIETARY_GUIDELINE_2024", destination: URL(string: "http://www.nhc.gov.cn/sps/c100088/202402/9ba512ba8e314a47a181db11d2fa188d.shtml")!)
+				Link("SOURCE_DIETARY_GUIDELINE_2024", destination: URL(string: "https://ard.bmj.com/content/76/1/29")!)
 					.font(.caption)
 					.foregroundStyle(.blue)
-				Link("SOURCE_YOULAI_REFERENCE_RANGES", destination: URL(string: "https://m.youlai.cn/sjingbian/article/DD9828MtgUu.html")!)
+				Link("SOURCE_YOULAI_REFERENCE_RANGES", destination: URL(string: "https://medlineplus.gov/lab-tests/uric-acid-blood-test/")!)
 					.font(.caption)
 					.foregroundStyle(.blue)
 				Link("SOURCE_PUBCHEM_URIC_ACID", destination: URL(string: "https://pubchem.ncbi.nlm.nih.gov/compound/Uric-acid")!)

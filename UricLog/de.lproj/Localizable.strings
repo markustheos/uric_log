@@ -60,14 +60,6 @@
 "SAVE" = "Speichern";
 "REFERENCE_INFORMATION" = "Referenzinformationen";
 "DONE" = "Fertig";
-"AD_CONSENT_MESSAGE" = "Bitte lies die Datenschutzerklärung sorgfältig durch. Mit deiner Einwilligung initialisiert die App Werbedienste und zeigt Werbung an. Anonyme Nutzungsstatistiken enthalten keine Gesundheitsdaten und sind von dieser Entscheidung unabhängig.";
-"AD_PROVIDER_TESTING" = "Werbeanbieter testen";
-"AD_PROVIDER" = "Werbeanbieter";
-"AD_PROVIDER_AUTOMATIC" = "Standard (App Store-Region)";
-"AD_PROVIDER_UMENG" = "Umeng";
-"AD_PROVIDER_DESCRIPTION" = "Im Standardmodus wird Umeng für den App Store in Festlandchina und AdMob in allen anderen Regionen verwendet. Starte die App nach einer Änderung neu.";
-"ADMOB_PRIVACY_TEST" = "AdMob-Datenschutzformular testen";
-"ADMOB_PRIVACY_TEST_CONFIRMATION" = "Die europäische Region simulieren und das AdMob-Datenschutzformular beim nächsten Start anzeigen?";
 "RESET_AND_CLOSE_SETTINGS" = "Zurücksetzen und Einstellungen schließen";
 "UNIT_CONVERSION" = "Einheitenumrechnung";
 "COMMON_UNITS" = "Gängige Einheiten: μmol/L und mg/dL";
@@ -141,7 +133,6 @@
 
 "STATUS_CHECKING" = "Wird geprüft...";
 "STATUS_DISABLED" = "Deaktiviert";
-"ICLOUD_LOAD_ERROR" = "Der iCloud-Speicher konnte nicht initialisiert werden. Die App verwendet jetzt den lokalen Speicher.\n\n%@";
 "STATUS_CONNECTION_FAILED" = "Verbindung fehlgeschlagen";
 "STATUS_CONNECTED" = "Verbunden";
 "ICLOUD_ACCOUNT_AVAILABLE" = "Account verfügbar";
@@ -171,20 +162,10 @@
 "EXPORT_ERROR" = "Export fehlgeschlagen";
 "SPLASH_TAGLINE" = "Werte erfassen, den Verlauf verfolgen.";
 "PRIVACY" = "Datenschutz";
-"PRIVACY_NOTICE_TITLE" = "Nutzungsbedingungen und Datenschutzerklärung";
-"PRIVACY_NOTICE_LEGACY" = "Bitte lies die Datenschutzerklärung sorgfältig durch. Wir erfassen begrenzte anonyme Informationen zur Nutzung der Funktionen, unabhängig von der Einwilligung in Werbung. Mit deiner Einwilligung kann die App Werbedienste aktivieren und Werbung anzeigen.";
 "HEALTH_DATA_PRIVACY_MESSAGE" = "Deine Harnsäurewerte, Notizen und anderen Gesundheitsdaten werden nicht an Analyse- oder Werbedienste gesendet. Wenn du iCloud aktivierst, werden sie über Apple CloudKit synchronisiert.";
 "DECLINE" = "Nicht einwilligen";
-"PRIVACY_SUMMARY_LEGACY" = "Wir erfassen begrenzte anonyme Nutzungsstatistiken unabhängig von der Einwilligung in Werbung. Mit deiner Einwilligung kann Werbung angezeigt werden. Gesundheitsdaten werden nicht an Analyse- oder Werbedienste gesendet. Sie werden nur dann über Apple CloudKit synchronisiert, wenn du iCloud aktivierst.";
-"VIEW_PRIVACY_POLICY" = "Datenschutzerklärung anzeigen";
 "AGREE_AND_CONTINUE" = "Einwilligen und fortfahren";
 "CONTINUE_WITHOUT_CONSENT" = "Ohne Einwilligung fortfahren";
-"CONSENT_DECLINED_MESSAGE" = "Du kannst weiterhin ohne Einwilligung Daten lokal erfassen. Werbedienste, die diese Einwilligung benötigen, werden nicht aktiviert. Die anonymen Nutzungsstatistiken bleiben von deiner Entscheidung unabhängig.";
 "INTERNAL_SETTINGS" = "Interne Einstellungen";
-"RESET_PRIVACY_CONSENT" = "Datenschutzeinwilligung zurücksetzen";
-"RESET_AD_DISPLAY" = "Werbeanzeige zurücksetzen";
 "RESET_RESTART_MESSAGE" = "Schließe die App nach dem Zurücksetzen vollständig und öffne sie erneut. Deine Harnsäuremessungen und Einstellungen werden nicht gelöscht.";
-"RESET_PRIVACY_CONFIRMATION" = "Datenschutzeinwilligung zurücksetzen?";
-"RESET_AD_DISPLAY_CONFIRMATION" = "Den Verlauf der heute angezeigten Werbung zurücksetzen?";
-"RESET_AD_CACHE_CONFIRMATION" = "Den Verlauf der heute angezeigten Werbung und den Regionscache zurücksetzen?";
 "STORE_REGION_REFRESH_MESSAGE" = "Beim nächsten Start verwendet die App die Systemregion und aktualisiert die App Store-Region im Hintergrund.";

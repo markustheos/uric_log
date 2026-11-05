@@ -19,8 +19,7 @@ struct UricLogApp: App {
 
 	var body: some Scene {
 		WindowGroup {
-			PrivacyConsentContainer {
-				DailySplashContainer {
+			DailySplashContainer {
 				Group {
 					if persistenceController.isLoaded {
 						RootTabView()
@@ -48,7 +47,6 @@ struct UricLogApp: App {
 					}
 				.id(appLanguageRawValue)
 				}
-			}
 			.environment(\.locale, appLanguage.locale)
 			.onChange(of: scenePhase) { _, newPhase in
 				handleScenePhaseChange(newPhase)
@@ -66,7 +64,6 @@ struct UricLogApp: App {
 				return
 			}
 			self.backgroundEnteredAt = nil
-			AppOpenAdManager.shared.attemptForegroundPresentation()
 		default:
 			break
 		}

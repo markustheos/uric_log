@@ -24,8 +24,6 @@ struct SettingsView: View {
 	@State private var exportURL: URL?
 	@State private var exportError: String?
 	@State private var showingRestartHint = false
-	@State private var showingHiddenSettings = false
-	@State private var versionTapCount = 0
 	@State private var lastPreferredUnitRawValue: String = UricUnit.umolL.rawValue
 	@State private var showingNotificationPermissionAlert = false
 
@@ -57,9 +55,6 @@ struct SettingsView: View {
 		}
 		.background(Color(.systemGroupedBackground))
 		.navigationTitle("TAB_SETTINGS")
-		.sheet(isPresented: $showingHiddenSettings) {
-			HiddenSettingsView()
-		}
 		.alert("RESTART_RECOMMENDED", isPresented: $showingRestartHint) {
 				Button("OK") {
 					Analytics.track("icloud_restart_hint_acknowledged")
@@ -590,30 +585,6 @@ struct SettingsView: View {
 				Divider()
 					.padding(.leading, 44)
 
-				Link(destination: URL(string: "https://xiaochai.tech/uric_log/privacy-policy.html")!) {
-					HStack(spacing: 12) {
-						SettingIconView(icon: "hand.raised.fill", color: .teal)
-
-						Text("VIEW_PRIVACY_POLICY")
-							.font(.system(size: 16))
-							.foregroundStyle(.primary)
-
-						Spacer()
-
-						Image(systemName: "arrow.up.right")
-							.font(.caption)
-							.foregroundStyle(.secondary)
-					}
-				}
-				.buttonStyle(.plain)
-				.padding(.vertical, 12)
-				.simultaneousGesture(TapGesture().onEnded {
-					Analytics.track("privacy_policy_opened", properties: ["source": "settings"])
-				})
-
-				Divider()
-					.padding(.leading, 44)
-				
 				// 版本信息
 				HStack(spacing: 12) {
 					SettingIconView(icon: "v.square", color: .secondary)
@@ -629,16 +600,6 @@ struct SettingsView: View {
 					Spacer()
 				}
 				.padding(.vertical, 12)
-				.contentShape(Rectangle())
-				.onTapGesture {
-					#if DEBUG
-					versionTapCount += 1
-					if versionTapCount >= 5 {
-						versionTapCount = 0
-						showingHiddenSettings = true
-					}
-					#endif
-				}
 			}
 		}
 		.padding()
@@ -651,8 +612,7 @@ struct SettingsView: View {
 
 	private var appVersionText: String {
 		let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "-"
-		let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "-"
-		return "UricLog v\(version) (\(build))"
+		return "v\(version)"
 	}
 
 	private func exportCSV() {
@@ -678,99 +638,6 @@ struct SettingsView: View {
 	private func filterRecords(records: [UricAcidRecordEntity], range: TimeRange) -> [UricAcidRecordEntity] {
 		guard let start = range.startDate() else { return records }
 		return records.filter { $0.measuredAt >= start }
-	}
-}
-
-private struct HiddenSettingsView: View {
-	@Environment(\.dismiss) private var dismiss
-	@AppStorage(AppSettingsKey.adProviderOverride) private var adProviderRawValue = AdProviderPreference.automatic.rawValue
-	@State private var showingPrivacyResetConfirmation = false
-	@State private var showingAdResetConfirmation = false
-	@State private var showingAdMobPrivacyResetConfirmation = false
-
-	var body: some View {
-		NavigationStack {
-			List {
-				Section {
-					Picker("AD_PROVIDER", selection: $adProviderRawValue) {
-						ForEach(AdProviderPreference.allCases) { provider in
-							Text(provider.displayName).tag(provider.rawValue)
-						}
-					}
-					.pickerStyle(.segmented)
-				} header: {
-					Text("AD_PROVIDER_TESTING")
-				} footer: {
-					Text("AD_PROVIDER_DESCRIPTION")
-				}
-
-				Section {
-					Button {
-						showingPrivacyResetConfirmation = true
-					} label: {
-						Label("RESET_PRIVACY_CONSENT", systemImage: "hand.raised")
-					}
-
-					Button {
-						showingAdResetConfirmation = true
-					} label: {
-						Label("RESET_AD_DISPLAY", systemImage: "rectangle.badge.xmark")
-					}
-
-					#if DEBUG
-					Button {
-						showingAdMobPrivacyResetConfirmation = true
-					} label: {
-						Label("ADMOB_PRIVACY_TEST", systemImage: "hand.raised.square")
-					}
-					#endif
-				} footer: {
-					Text("RESET_RESTART_MESSAGE")
-				}
-			}
-			.navigationTitle("INTERNAL_SETTINGS")
-			.navigationBarTitleDisplayMode(.inline)
-			.toolbar {
-				ToolbarItem(placement: .confirmationAction) {
-					Button("DONE") { dismiss() }
-				}
-			}
-			.confirmationDialog(
-				"RESET_PRIVACY_CONFIRMATION",
-				isPresented: $showingPrivacyResetConfirmation,
-				titleVisibility: .visible
-			) {
-				Button("RESET_PRIVACY_CONSENT", role: .destructive) {
-					UserDefaults.standard.removeObject(forKey: AppSettingsKey.privacyConsentGranted)
-					UserDefaults.standard.removeObject(forKey: AppSettingsKey.privacyConsentChoiceMade)
-					dismiss()
-				}
-			}
-			.confirmationDialog(
-				"ADMOB_PRIVACY_TEST_CONFIRMATION",
-				isPresented: $showingAdMobPrivacyResetConfirmation,
-				titleVisibility: .visible
-			) {
-				Button("RESET_AND_CLOSE_SETTINGS", role: .destructive) {
-					adProviderRawValue = AdProviderPreference.admob.rawValue
-					AppOpenAdManager.shared.resetAdMobPrivacyConsentForTesting()
-					dismiss()
-				}
-			}
-			.confirmationDialog(
-				"RESET_AD_CACHE_CONFIRMATION",
-				isPresented: $showingAdResetConfirmation,
-				titleVisibility: .visible
-			) {
-				Button("RESET_AD_DISPLAY", role: .destructive) {
-					AppOpenAdManager.shared.resetDailyExposure()
-					UserDefaults.standard.removeObject(forKey: AppSettingsKey.cachedStorefrontCountryCode)
-					dismiss()
-				}
-			} message: {
-				Text("STORE_REGION_REFRESH_MESSAGE")
-			}
-		}
 	}
 }
 
