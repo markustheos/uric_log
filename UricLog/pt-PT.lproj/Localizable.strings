@@ -74,9 +74,9 @@
 "DISCLAIMER_LAB_VARIATION" = "• Os valores podem variar consoante o laboratório e o método de análise.";
 "DISCLAIMER_LAB_REFERENCE" = "• Segue o intervalo de referência indicado no teu relatório de análises.";
 "DISCLAIMER_CONSULT_DOCTOR" = "• Em caso de resultados anormais, consulta um profissional de saúde. Evita o autodiagnóstico.";
-"SOURCE_GOUT_GUIDELINE_2019" = "Chinese Journal of Endocrinology and Metabolism: orientações chinesas para o diagnóstico e tratamento da hiperuricemia e da gota (2019)";
-"SOURCE_DIETARY_GUIDELINE_2024" = "Comissão Nacional de Saúde da China: orientações alimentares para adultos com hiperuricemia e gota (2024)";
-"SOURCE_YOULAI_REFERENCE_RANGES" = "Youlai: exemplos de intervalos de referência da uricemia";
+"SOURCE_GOUT_GUIDELINE_2019" = "American College of Rheumatology: Diretriz para o tratamento da gota (2020)";
+"SOURCE_DIETARY_GUIDELINE_2024" = "EULAR: Recomendações para o tratamento da gota";
+"SOURCE_YOULAI_REFERENCE_RANGES" = "MedlinePlus: Análise ao sangue do ácido úrico (informação de referência)";
 "SOURCE_PUBCHEM_URIC_ACID" = "PubChem: ácido úrico (massa molecular para conversão de unidades)";
 
 "URIC_ACID_TREND" = "Evolução da uricemia";

@@ -75,8 +75,8 @@
 "DISCLAIMER_LAB_REFERENCE" = "• Suivez l'intervalle de référence indiqué sur votre compte rendu d'analyse.";
 "DISCLAIMER_CONSULT_DOCTOR" = "• En cas de résultats anormaux, consultez un professionnel de santé. Évitez l'autodiagnostic.";
 "SOURCE_GOUT_GUIDELINE_2019" = "Chinese Journal of Endocrinology and Metabolism : recommandations chinoises pour le diagnostic et le traitement de l'hyperuricémie et de la goutte (2019)";
-"SOURCE_DIETARY_GUIDELINE_2024" = "Commission nationale de la santé de Chine : recommandations alimentaires pour les adultes atteints d'hyperuricémie et de goutte (2024)";
-"SOURCE_YOULAI_REFERENCE_RANGES" = "Youlai : exemples d'intervalles de référence de l'uricémie";
+"SOURCE_DIETARY_GUIDELINE_2024" = "EULAR : recommandations pour la prise en charge de la goutte";
+"SOURCE_YOULAI_REFERENCE_RANGES" = "MedlinePlus : analyse sanguine de l'acide urique (informations de référence)";
 "SOURCE_PUBCHEM_URIC_ACID" = "PubChem : acide urique (masse moléculaire pour la conversion des unités)";
 
 "URIC_ACID_TREND" = "Évolution de l'uricémie";

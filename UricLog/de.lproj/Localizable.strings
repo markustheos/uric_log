@@ -74,9 +74,9 @@
 "DISCLAIMER_LAB_VARIATION" = "• Die Werte können je nach Labor und Untersuchungsmethode variieren.";
 "DISCLAIMER_LAB_REFERENCE" = "• Orientiere dich am Referenzbereich auf deinem Laborbefund.";
 "DISCLAIMER_CONSULT_DOCTOR" = "• Wende dich bei auffälligen Ergebnissen an medizinisches Fachpersonal. Stelle keine Selbstdiagnose.";
-"SOURCE_GOUT_GUIDELINE_2019" = "Chinese Journal of Endocrinology and Metabolism: Chinesische Leitlinie zur Diagnose und Behandlung von Hyperurikämie und Gicht (2019)";
-"SOURCE_DIETARY_GUIDELINE_2024" = "Nationale Gesundheitskommission Chinas: Ernährungsempfehlungen für Erwachsene mit Hyperurikämie und Gicht (2024)";
-"SOURCE_YOULAI_REFERENCE_RANGES" = "Youlai: Beispiele für Harnsäure-Referenzbereiche";
+"SOURCE_GOUT_GUIDELINE_2019" = "American College of Rheumatology: Leitlinie zur Behandlung der Gicht (2020)";
+"SOURCE_DIETARY_GUIDELINE_2024" = "EULAR: Empfehlungen zur Behandlung der Gicht";
+"SOURCE_YOULAI_REFERENCE_RANGES" = "MedlinePlus: Bluttest auf Harnsäure (Referenzinformationen)";
 "SOURCE_PUBCHEM_URIC_ACID" = "PubChem: Harnsäure (Molekülmasse zur Einheitenumrechnung)";
 
 "URIC_ACID_TREND" = "Harnsäureverlauf";
