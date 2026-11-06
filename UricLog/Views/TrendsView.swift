@@ -363,16 +363,11 @@ struct TrendsView: View {
 	}
 
 	private var yDomain: ClosedRange<Double> {
-		var values = filteredPoints.map(\.value)
-		if targetEnabled {
-			values.append(targetValue)
-		}
-		let minValue = values.min() ?? 0
-		let maxValue = values.max() ?? 1
-		let padding = max(10, (maxValue - minValue) * 0.15)
-		let lower = max(0, minValue - padding)
-		let upper = maxValue + padding
-		return lower...upper
+		TrendYAxis.domain(
+			values: filteredPoints.map(\.value),
+			target: targetEnabled ? targetValue : nil,
+			unit: preferredUnit
+		)
 	}
 
 	/// 横轴刻度吸附到真实记录日期。跨年时减少为 3 个，避免标签拥挤。
@@ -469,6 +464,37 @@ struct TrendsView: View {
 	private func formatDelta(_ delta: Double) -> String {
 		let sign = delta > 0 ? "+" : ""
 		return "\(sign)\(delta.formatted(.number.precision(.fractionLength(0...4))))"
+	}
+}
+
+/// Calculate in the canonical unit so changing display units preserves the
+/// shape of the chart. A small minimum span prevents a degenerate axis for a
+/// single reading or identical readings, without forcing the axis to zero.
+enum TrendYAxis {
+	static func domain(values: [Double], target: Double?, unit: UricUnit) -> ClosedRange<Double> {
+		var canonicalValues = values.filter(\.isFinite).map {
+			UricUnit.convert(value: $0, from: unit, to: .umolL)
+		}
+		if let target, target.isFinite {
+			canonicalValues.append(UricUnit.convert(value: target, from: unit, to: .umolL))
+		}
+		guard let minimum = canonicalValues.min(), let maximum = canonicalValues.max() else {
+			return convert(0...1, to: unit)
+		}
+		let span = maximum - minimum
+		let minimumSpan = 10.0 // μmol/L, approximately 0.168 mg/dL
+		let padding = max(span * 0.15, minimumSpan * 0.15)
+		let midpoint = minimum + span / 2
+		let halfSpan = max(span, minimumSpan) / 2
+		let lower = max(0, midpoint - halfSpan - padding)
+		let upper = max(lower + minimumSpan, midpoint + halfSpan + padding)
+		return convert(lower...upper, to: unit)
+	}
+
+	private static func convert(_ range: ClosedRange<Double>, to unit: UricUnit) -> ClosedRange<Double> {
+		let lower = UricUnit.convert(value: range.lowerBound, from: .umolL, to: unit)
+		let upper = UricUnit.convert(value: range.upperBound, from: .umolL, to: unit)
+		return lower...upper
 	}
 }
 
