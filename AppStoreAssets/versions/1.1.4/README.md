@@ -4,7 +4,8 @@
 - `generated/<locale>/`: localized marketing images rendered by `tools/generate.swift`.
 - Languages: en-US, zh-Hans, de, es, fr, it, pt-PT.
 - Screens: records, trends, add-record. No date-time promotional image.
-- Promotional size: 1284 × 2778.
+- Promotional size: 1206 × 2622 (explicit pixel bitmap).
+- Upload slot: Dynamic Island iPhone, medium display (required).
 
 Captured from the no-ad 1.1.4 (10) app on iPhone 18 Pro.
 The simulator contains five illustrative readings, dated November 2–6, 2026:
@@ -28,4 +29,11 @@ Known app presentation details retained faithfully (not retouched in artwork):
 - French app title currently contains `Aacide`, an existing translation typo.
 - Longer chart headings wrap, and the bottom tab bar overlays part of statistics.
 
-These files have not been uploaded to App Store Connect.
+The corrected 1206 × 2622 images have been uploaded to the required medium
+Dynamic Island iPhone slot for all seven languages in the 1.1.4 draft.
+The earlier 1284 × 2778 images remain in the optional large Face ID iPhone slot;
+they are not valid inputs for the medium Dynamic Island slot.
+
+The latest release archive was uploaded as Build 11 (Xcode automatically
+incremented the build number). The user confirmed that 1.1.4 was submitted
+for review; this is not a claim of App Store approval.

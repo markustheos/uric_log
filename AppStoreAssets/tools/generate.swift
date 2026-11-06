@@ -73,8 +73,11 @@ for shot in shots {
 	}
 }
 
-// AppKit renders this 2x, producing App Store's accepted 1284 x 2778 size.
+// Keep the established layout, but render explicit pixels for the required
+// Dynamic Island medium iPhone slot. Do not depend on lockFocus/Retina scale.
 let canvasSize = NSSize(width: 642, height: 1389)
+let outputWidth = 1206
+let outputHeight = 2622
 let screenshotWidth: CGFloat = 510
 let screenshotY: CGFloat = 14
 let screenshotCornerRadius: CGFloat = 29
@@ -102,8 +105,19 @@ for shot in shots {
 		fatalError("Unable to load \(shot.input)")
 	}
 
-	let canvas = NSImage(size: canvasSize)
-	canvas.lockFocus()
+	guard let bitmap = NSBitmapImageRep(
+		bitmapDataPlanes: nil, pixelsWide: outputWidth, pixelsHigh: outputHeight,
+		bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true, isPlanar: false,
+		colorSpaceName: .deviceRGB, bytesPerRow: 0, bitsPerPixel: 0
+	), let context = NSGraphicsContext(bitmapImageRep: bitmap) else {
+		fatalError("Unable to create output bitmap")
+	}
+	NSGraphicsContext.saveGraphicsState()
+	NSGraphicsContext.current = context
+	context.cgContext.scaleBy(
+		x: CGFloat(outputWidth) / canvasSize.width,
+		y: CGFloat(outputHeight) / canvasSize.height
+	)
 	NSColor(calibratedRed: 0.965, green: 0.975, blue: 0.992, alpha: 1).setFill()
 	NSRect(origin: .zero, size: canvasSize).fill()
 
@@ -129,10 +143,9 @@ for shot in shots {
 	source.draw(in: imageRect, from: NSRect(origin: .zero, size: source.size), operation: .sourceOver, fraction: 1)
 	NSGraphicsContext.restoreGraphicsState()
 
-	canvas.unlockFocus()
-	guard let tiff = canvas.tiffRepresentation,
-		let bitmap = NSBitmapImageRep(data: tiff),
-		let png = bitmap.representation(using: .png, properties: [:]) else {
+	context.flushGraphics()
+	NSGraphicsContext.restoreGraphicsState()
+	guard let png = bitmap.representation(using: .png, properties: [:]) else {
 		fatalError("Unable to encode \(shot.output)")
 	}
 	let output = URL(fileURLWithPath: outputRoot + "/" + shot.output)
