@@ -84,6 +84,28 @@ PY
 
 ## 后续版本更新流程
 
+### 商店名称本地化（与版本文案分开）
+
+App Store 搜索结果/产品页的名称需要在 App Store Connect → App 信息 →
+本地化信息中，按语言配置“名称”（以及可选副标题）。仅添加版本描述、
+更新说明或截图不会自动本地化商店名称。`InfoPlist.strings` 的
+`CFBundleDisplayName` 控制设备上的 App 名称，也不代替商店名称。
+
+建议名称：
+
+| 语言 | 商店名称 |
+| --- | --- |
+| zh-Hans | 尿酸记录 |
+| en-US | Uric Acid Log |
+| de | Harnsäure-Tagebuch |
+| es | Diario Ácido Úrico |
+| fr | Journal Acide Urique |
+| it | Diario Acido Urico |
+| pt-PT | Diário Ácido Úrico |
+
+保存前检查字符限制和名称可用性，并确认当前审核状态是否允许编辑。
+商店最终显示还受用户的商店语言及本地化回退影响，不是由 App 内手动选择的语言控制。
+
 ### 1. 建立新目录，安装要发布的代码
 
 不要覆盖旧版本目录。下面以 `1.1.5` 为例，在仓库根目录执行：

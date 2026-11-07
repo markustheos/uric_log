@@ -130,7 +130,10 @@ enum UserGender: String, CaseIterable, Identifiable, Codable {
 		let lower = UricUnit.convert(value: normalRangeLower, from: .umolL, to: unit)
 		let upper = UricUnit.convert(value: normalRangeUpper, from: .umolL, to: unit)
 		let format = unit == .umolL ? "%.0f" : "%.1f"
-		return String(format: "\(format)-\(format) \(unit.displayName)", lower, upper)
+		return String(
+			format: "\(format)-\(format) \(unit.displayName)",
+			locale: AppLanguage.selected.locale, lower, upper
+		)
 	}
 }
 

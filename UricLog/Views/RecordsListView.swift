@@ -322,7 +322,9 @@ struct RecordCard: View {
 	private var note: String { record.note }
     
 	private var valueString: String {
-		displayValue.formatted(.number.precision(.fractionLength(0...4)))
+		displayValue.formatted(
+			.number.locale(AppLanguage.selected.locale).precision(.fractionLength(0...4))
+		)
 	}
 
 	private var displayValue: Double {

@@ -251,9 +251,9 @@ struct TrendsView: View {
 	private func axisValue(_ value: Double) -> String {
 		switch preferredUnit {
 		case .umolL:
-			return value.formatted(.number.precision(.fractionLength(0)))
+			return value.formatted(.number.locale(AppLanguage.selected.locale).precision(.fractionLength(0)))
 		case .mgdL:
-			return value.formatted(.number.precision(.fractionLength(1)))
+			return value.formatted(.number.locale(AppLanguage.selected.locale).precision(.fractionLength(1)))
 		}
 	}
 	
@@ -458,12 +458,12 @@ struct TrendsView: View {
 	}
 
 	private func formatValue(_ value: Double) -> String {
-		value.formatted(.number.precision(.fractionLength(0...4)))
+		value.formatted(.number.locale(AppLanguage.selected.locale).precision(.fractionLength(0...4)))
 	}
 
 	private func formatDelta(_ delta: Double) -> String {
 		let sign = delta > 0 ? "+" : ""
-		return "\(sign)\(delta.formatted(.number.precision(.fractionLength(0...4))))"
+		return "\(sign)\(delta.formatted(.number.locale(AppLanguage.selected.locale).precision(.fractionLength(0...4))))"
 	}
 }
 

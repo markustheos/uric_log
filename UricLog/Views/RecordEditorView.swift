@@ -94,7 +94,9 @@ struct RecordEditorView: View {
             if let record {
                 measuredAt = record.measuredAt
                 selectedUnit = record.unit
-                valueText = String(format: "%.0f", record.value)
+                valueText = MeasurementValueText.editing(
+                    record.value, locale: AppLanguage.selected.locale
+                )
                 note = record.note ?? ""
             }
         }
@@ -455,7 +457,7 @@ struct RecordEditorView: View {
     }
 
     private var parsedValue: Double? {
-        Double(valueText.replacingOccurrences(of: ",", with: "."))
+        MeasurementValueText.parse(valueText)
     }
     
     private var userGender: UserGender {
@@ -516,6 +518,25 @@ struct RecordEditorView: View {
 	private var editorMode: String {
 		record == nil ? "create" : "edit"
 	}
+}
+
+/// Add and edit share the same decimal parser. Never round an existing reading
+/// just to populate the editor: saving a note must not change its measurement.
+enum MeasurementValueText {
+    static func editing(_ value: Double, locale: Locale) -> String {
+        value.formatted(
+            .number.locale(locale)
+                .grouping(.never)
+                .precision(.fractionLength(2...17))
+        )
+    }
+
+    static func parse(_ text: String) -> Double? {
+        let normalized = text.trimmingCharacters(in: .whitespacesAndNewlines)
+            .replacingOccurrences(of: ",", with: ".")
+        guard let value = Double(normalized), value.isFinite else { return nil }
+        return value
+    }
 }
 
 // MARK: - 参考信息详情页
