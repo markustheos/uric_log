@@ -1,0 +1,33 @@
+name: Sync Upstream
+
+on:
+  schedule:
+    # Esegue ogni giorno alle 06:00 UTC
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout fork
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sync with upstream
+        run: |
+          UPSTREAM_URL=$(gh api repos/${{ github.repository }} --jq '.parent.clone_url')
+          DEFAULT_BRANCH=$(gh api repos/${{ github.repository }} --jq '.parent.default_branch')
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote add upstream "$UPSTREAM_URL"
+          git fetch upstream "$DEFAULT_BRANCH"
+          git checkout "$DEFAULT_BRANCH"
+          git merge "upstream/$DEFAULT_BRANCH" --ff-only
+          git push origin "$DEFAULT_BRANCH"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
